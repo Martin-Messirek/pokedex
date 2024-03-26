@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt</title>
+    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/responsive.css">
+    <script src="script.js" async></script>
+</head>
+
+<body onload="init()">
+    <div class="overflow">
+        <div w3-include-html="./templates/header.html"></div>
+        <div class="container">
+            <div class="flex-container">
+                <div class="contact-height"></div>
+                <div class="form-container">
+                    <h2 class="contact-h2">Kontaktform</h2>
+
+                    <form onsubmit="sendMail(event)">
+                        <div class="fieldset">
+                            <div class="div-input">
+                                <label for="surname">Dein Name: </label>
+                                <input class="contact-input-field" id="surname" type="text" name="Name"
+                                    autocomplete="on" required>
+                            </div>
+
+                            <div class="div-input">
+                                <label for="phone-number">Deine Telefonnummer: </label>
+                                <input class="contact-input-field" id="phone-number" type="tel" name="Telefonnummer"
+                                    autocomplete="on">
+                            </div>
+
+                            <div class="div-input">
+                                <label for="email">Deine E-mail-Adresse: </label>
+                                <input class="contact-input-field" id="email" type="email" name="E-mail"
+                                    autocomplete="on" required placeholder="deine@email.com">
+                            </div>
+
+                            <div class="div-input">
+                                <label for="messagekochwelt">Deine Nachricht: </label>
+                                <textarea class="contact-input-field" id="messagekochwelt" name="Nachricht" rows="5"
+                                    cols="30" required></textarea>
+                            </div>
+
+                            <div class="div-input">
+                                <button type="submit">Senden</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div w3-include-html="./templates/footer.html" class="footer"></div>
+    </div>
+</body>
+
+</html>
