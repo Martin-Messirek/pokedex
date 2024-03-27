@@ -110,7 +110,14 @@
     .small-pokemon-image {
       width: 180px;
     }
+
+    .suggestions {
+        top: -50px;
+        left: 180px;
+    }
 }
+
+
 
 @media only screen and (min-width: 576px) {
     .a-100percent-element {
@@ -143,15 +150,27 @@
     .footer a {
         padding: 24px;
     }
+
+    .suggestions {
+        top: -50px;
+        left: 240px;
+    }
 }
 
 @media only screen and (min-width: 768px) {  
-    .hero-text h1 {
+    /* .hero-text h1 {
         font-size: 64px;
-    }
+    } */
     .type-btn-container {
         justify-content: start;
     }
+
+    .suggestions {
+        top: -50px;
+        left: 280px;
+}
+
+
 }
 
 @media only screen and (min-width: 992px) {  
