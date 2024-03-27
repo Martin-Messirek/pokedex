@@ -100,6 +100,18 @@
 }
 }
 
+@media only screen and (min-width: 440px) {
+    .card {
+      width: 360px;
+      height: 300px;
+      padding: 24px;
+    }
+
+    .small-pokemon-image {
+      width: 180px;
+    }
+}
+
 @media only screen and (min-width: 576px) {
     .a-100percent-element {
         width: 30vw;
@@ -118,9 +130,8 @@
         padding: 88px;
     }
 
-    .load-cards-btn {
+    .load-cards-btn, .type-btn {
         font-size: 24px;
-        font-weight: 600;
     }
 
     .footer {
@@ -138,13 +149,19 @@
     .hero-text h1 {
         font-size: 64px;
     }
+    .type-btn-container {
+        justify-content: start;
+    }
 }
 
 @media only screen and (min-width: 992px) {  
   
 }
 
-@media only screen and (min-width: 1200px) {  
+@media only screen and (min-width: 1200px) {
+    .header-h1 {
+        font-size: 104px;
+    }
   
 }
 

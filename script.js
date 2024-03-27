@@ -72,14 +72,69 @@ let types = ['water', 'grass', 'fire', 'bug', 'normal', 'poison', 'electric', 'g
 
 let colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-2)', 'var(--normal-2)', 'var(--poison-2)', 'var(--electric-2)', 'var(--ground-2)', 'var(--fairy-2)', 'var(--fighting-2)', 'var(--rock-2)', 'var(--ghost-2)', 'var(--psycho-2)', 'var(--ice-2)', 'var(--dragon-2)'];
 
+let colorsDark = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--ghost-3)', 'var(--psycho-3)', 'var(--ice-3)', 'var(--dragon-3)'];
+
+
 let currentIndex = 0;
 
 function getId(id) {
     return document.getElementById(id);
 }
 
+
+// Input Field Autocomplete Suggestions
+
+let input = document.getElementById('name');
+let suggestions = document.getElementById('suggestions');
+
+input.addEventListener('input', function () {
+    let searchInput = this.value.toLowerCase();
+    let matches = [];
+    for (let i = 0; i < pokemons.length; i++) {
+        if (pokemons[i].startsWith(searchInput)) {
+            matches.push(capitalize(pokemons[i]));
+        }
+        if (matches.length === 5) {
+            break;
+        }
+    }
+    displaySuggestions(matches);
+});
+
+function displaySuggestions(matches) {
+    let suggestionsHTML = '';
+    for (let i = 0; i < matches.length; i++) {
+        suggestionsHTML += '<div class="suggestion">' + matches[i] + '</div>';
+    }
+    suggestions.innerHTML = suggestionsHTML;
+
+    let suggestionElements = document.querySelectorAll('.suggestion');
+    for (let i = 0; i < suggestionElements.length; i++) {
+        suggestionElements[i].addEventListener('click', function () {
+            input.value = this.textContent;
+            clearSuggestions();
+        });
+    }
+}
+
+function clearSuggestions() {
+    suggestions.innerHTML = '';
+}
+
+function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+
+
+
+
+
+
+
+
 async function init() {
-    getId('card-container').innerHTML = '';
+    // getId('card-container').innerHTML = '';
     for (i = currentIndex; i < currentIndex + 20 && i < pokemons.length; i++) {
         await loadSmallCards(i);
     }
@@ -120,13 +175,14 @@ function renderSmallCards(i, pokemon) {
 
     getId('card-container').innerHTML += `
             <div class="card" id="card${i}">
-            <h2>${pokemon['name']}</h2>
-                <div>
+            <h2 class="card-h2">${pokemon['name']}</h2>
+                <div class="small-card-main">
                     <div>
-                        <div class="card-type-1">${pokemon['types']['0']['type']['name']}</div>
-                        <div class="card-type-1">${type}</div>
+                    
+                        <div id="card-type-1-${i}" class="card-type">${pokemon['types']['0']['type']['name']}</div>
+                        <div id="card-type-2-${i}" class="card-type">${type}</div>
                     </div>
-                    <div>
+                    <div class="small-img-container">
                         <img id="small-pokemon-image" class="small-pokemon-image" src="${pokemon['sprites']['other']['home']['front_default']}" alt="">
                     </div>
                 </div>
@@ -137,8 +193,15 @@ function renderSmallCards(i, pokemon) {
     for (let j = 0; j < types.length; j++) {
         let type = types[j];
         let color = colors[j];
+        let colorDark = colorsDark[j];
         if (pokemon['types']['0']['type']['name'] == `${type}`) {
-            getId(`card${i}`).style.backgroundColor = `${color}`
+            getId(`card${i}`).style.backgroundColor = `${color}`;
+            getId(`card-type-1-${i}`).style.backgroundColor = `${colorDark}`;
+            if (getId(`card-type-2-${i}`).innerHTML == '') {
+                getId(`card-type-2-${i}`).style.display = 'none';
+            } else {
+                getId(`card-type-2-${i}`).style.backgroundColor = `${colorDark}`;
+            }
         }
     }
 }

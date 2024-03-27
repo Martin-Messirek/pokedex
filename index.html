@@ -20,63 +20,65 @@
     <script src="html.js" async></script>
 </head>
 
-<body onload="init(), includeHTML()">
+<!-- <body onload="init(), includeHTML()"> -->
 
-    <!-- <body onload="includeHTML()"> -->
+<body onload="includeHTML()">
     <div>
         <div w3-include-html="./templates/header.html"></div>
 
         <!-- Buttons and Search -->
+        <main class="main">
+            <section class="search-section">
+                <div class="form">
+                    <div class="form-container"><label for="name" class="form-label">Search for a Pokémon</label>
+                        <div id="suggestions"></div>
 
-        <section class="search-section">
-            <div class="form">
-                <div class="form-container"><label for="name" class="form-label">Search for a Pokémon</label>
-                    <input type="text" placeholder="Pokémon" id="name" class="form-input" />
-                    <button type="submit" class="btn search-btn">Search</button>
+                        <input type="text" placeholder="Pokémon" id="name" class="form-input" />
+                        <button type="submit" class="btn search-btn">Search</button>
+                    </div>
                 </div>
+                <div class="type-btn-container">
+                    <button onclick="loadType('fire')" class="type-btn btn fire">Fire</button>
+                    <button onclick="loadType('grass')" class="type-btn btn grass">Grass</button>
+                    <button onclick="loadType('water')" class="type-btn btn water">Water</button>
+                    <button onclick="loadType('electric')" class="type-btn btn electric">Electric</button>
+                    <button onclick="loadType('bug')" class="type-btn btn bug">Bug</button>
+                    <button onclick="loadType('normal')" class="type-btn btn normal">Normal</button>
+                    <button onclick="loadType('poison')" class="type-btn btn poison">Poison</button>
+                    <button onclick="loadType('ground')" class="type-btn btn ground">Ground</button>
+                    <button onclick="loadType('fairy')" class="type-btn btn fairy">Fairy</button>
+                    <button onclick="loadType('fighting')" class="type-btn btn fighting">Fighting</button>
+                    <button onclick="loadType('rock')" class="type-btn btn rock">Rock</button>
+                    <button onclick="loadType('ghost')" class="type-btn btn ghost">Ghost</button>
+                    <button onclick="loadType('psychic')" class="type-btn btn psycho">Psychic</button>
+                    <button onclick="loadType('ice')" class="type-btn btn ice">Ice</button>
+                    <button onclick="loadType('dragon')" class="type-btn btn dragon">Dragon</button>
+
+                </div>
+            </section>
+
+            <!--  Small Cards  -->
+            <div class="card-container" id="card-container"></div>
+
+            <div class="btn-container">
+                <button class="btn load-cards-btn" id="card-btn" onclick="init()">Load more Pokémons</button>
             </div>
-            <div class="type-btn-container">
-                <button onclick="loadType('fire')" class="type-btn btn fire">Fire</button>
-                <button onclick="loadType('grass')" class="type-btn btn grass">Grass</button>
-                <button onclick="loadType('water')" class="type-btn btn water">Water</button>
-                <button onclick="loadType('electric')" class="type-btn btn electric">Electric</button>
-                <button onclick="loadType('bug')" class="type-btn btn bug">Bug</button>
-                <button onclick="loadType('normal')" class="type-btn btn normal">Normal</button>
-                <button onclick="loadType('poison')" class="type-btn btn poison">Poison</button>
-                <button onclick="loadType('ground')" class="type-btn btn ground">Ground</button>
-                <button onclick="loadType('fairy')" class="type-btn btn fairy">Fairy</button>
-                <button onclick="loadType('fighting')" class="type-btn btn fighting">Fighting</button>
-                <button onclick="loadType('rock')" class="type-btn btn rock">Rock</button>
-                <button onclick="loadType('ghost')" class="type-btn btn ghost">Ghost</button>
-                <button onclick="loadType('psychic')" class="type-btn btn psycho">Psychic</button>
-                <button onclick="loadType('ice')" class="type-btn btn ice">Ice</button>
-                <button onclick="loadType('dragon')" class="type-btn btn dragon">Dragon</button>
+
+
+
+
+            <!--  Large Display  -->
+            <div class="pokedex d-none" id="pokedex">
+                <h1 id="pokemon-name" class="large-display-h1">Name</h1>
 
             </div>
-        </section>
-
-        <!--  Small Cards  -->
-        <div class="card-container" id="card-container"></div>
-
-        <div class="btn-container">
-            <button class="btn load-cards-btn" id="card-btn" onclick="init()">Load more Pokémons</button>
-        </div>
 
 
+            <div class="info-container d-none">
+                <div class="pokemon-image-container"><img id="pokemon-image" class="pokemon-image" src="" alt=""></div>
 
-
-        <!--  Large Display  -->
-        <div class="pokedex d-none" id="pokedex">
-            <h1 id="pokemon-name" class="large-display-h1">Name</h1>
-
-        </div>
-
-
-        <div class="info-container d-none">
-            <div class="pokemon-image-container"><img id="pokemon-image" class="pokemon-image" src="" alt=""></div>
-
-        </div>
-
+            </div>
+        </main>
         <div w3-include-html="./templates/footer.html" class="footer"></div>
     </div>
 </body>
