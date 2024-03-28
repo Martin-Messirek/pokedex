@@ -78,7 +78,8 @@ let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--b
 
 
 let currentIndex = 0;
-
+let offsetX = '400px';
+let offsetY = '40px';
 function getId(id) {
     return document.getElementById(id);
 }
@@ -96,9 +97,9 @@ input.addEventListener('input', function () {
         if (pokemons[i].startsWith(searchInput)) {
             matches.push(capitalize(pokemons[i]));
         }
-        // if (matches.length === 5) {
-        //     break;
-        // }
+        if (matches.length === 8) {
+            break;
+        }
     }
     displaySuggestions(matches);
 });
@@ -204,30 +205,36 @@ function showColorTypeOne(i, pokemon) {
         let typeName = types[j];
         let color = colors[j];
         let colorLight = colorsLight[j];
-        let offsetX = '230px';
-        let offsetY = '40px';
+
         if (pokemon['types']['0']['type']['name'] == `${typeName}`) {
-            getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${colorLight}, black, ${color})`;
+            getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, black, ${color})`;
+            //     getId(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
+            // }
+
+            // if (pokemon['types']['0']['type']['name'] == `${typeName}`) {
+            // getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, ${color},  ${colorLight}, #fff,  #000, ${colorLight}, ${color}, ${colorLight}, ${color}, ${colorLight})`;
+
+            // getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} top, ${color}, ${colorLight}, #333, #fff, #000, ${colorLight},  ${color}, ${colorLight}, ${colorLight})`;
+
+
             getId(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
         }
-        showColorTypeTwo(i, j, pokemon, typeName, colorLight);
+
+
+        showColorTypeTwo(i, j, pokemon, typeName, color, colorLight);
     }
 }
 
 function showColorTypeTwo(i, j, pokemon, typeName, color, colorLight) {
     for (let j = 0; j < types.length; j++) {
-        let type;
         // let color = colors[j];
         // let colorLight = colorsLight[j];
         if (pokemon['types'].length > 1 && pokemon['types']['1']['type']['name'] == `${typeName}`) {
             // console.log(pokemon['types'].length)
             getId(`card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
-            ype = pokemon['types']['1']['type']['name'];
-        } else {
-            // console.log('pokemon type 2')
-            // console.log(pokemon['types'].length)
-            type = '';
-            getId(`card-type-2-${i}`).style.display = 'none';
+            getId(`card-type-2-${i}`).innerHTML = `${pokemon['types']['1']['type']['name']}`;
+
+            // } 
         }
     }
 }
@@ -255,12 +262,12 @@ async function loadType(clickedType) {
         let typeOneSearched = pokemon['types'][0]['type']['name'];
 
         if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
-            renderSmallCards(i, pokemon)
+            renderSmallCardsSameType(i, pokemon)
         }
     }
 }
 
-function renderSmallCards(i, pokemon) {
+function renderSmallCardsSameType(i, pokemon) {
     getId('type-card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
     showColorTypeOne(i, pokemon);
 }

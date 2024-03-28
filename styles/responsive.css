@@ -76,7 +76,7 @@
 
 @media only screen and (min-width: 360px) {
     .header-h1 {
-        font-size: 64px;
+        font-size: 56px;
     }
     .header {
          height: 200px;
@@ -102,13 +102,21 @@
 
 @media only screen and (min-width: 440px) {
     .card {
-      width: 360px;
-      height: 300px;
-      padding: 24px;
+        width: 360px;
+        height: 330px;
+        padding: 24px;
+    }
+
+    .card-h2 {
+        font-size: 32px;
+    }
+
+    .id-number {
+        bottom: 40px;
     }
 
     .small-pokemon-image {
-      width: 180px;
+        width: 180px;
     }
 
     .suggestions {
@@ -125,14 +133,6 @@
         min-width: 400px;
     }  
 
-    .header-h1 {
-        font-size: 88px;
-    }
-
-     .header {
-        height: 300px;
-    }
-
      .btn-container {
         padding: 88px;
     }
@@ -142,9 +142,9 @@
     }
 
     .footer {
-    flex-flow: row;
-    justify-content: space-around;
-    align-items: center;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
     }
 
     .footer a {
@@ -155,6 +155,10 @@
         top: -50px;
         left: 240px;
     }
+
+    .pokemon-logo {
+         z-index: 2;
+    }  
 }
 
 @media only screen and (min-width: 768px) {  
@@ -165,6 +169,20 @@
         justify-content: start;
     }
 
+    .header-h1 {
+        font-size: 64px;
+    }
+
+    .pokemon-logo {
+         width: 140px;
+         top: 72px;
+         left: 56px;
+    }  
+
+     .header {
+        height: 300px;
+    }
+
     .suggestions {
         top: -50px;
         left: 280px;
@@ -173,13 +191,28 @@
 
 }
 
-@media only screen and (min-width: 992px) {  
+@media only screen and (min-width: 992px) {
+    .pokemon-logo {
+         width: 180px;
+         top: 56px;
+         left: 64px;
+    }
+
+    .header-h1 {
+        font-size: 88px;
+    }
   
 }
 
 @media only screen and (min-width: 1200px) {
     .header-h1 {
         font-size: 104px;
+    }
+
+    .pokemon-logo {
+        width: 280px;
+        top: 0;
+        left: 16px;
     }
   
 }

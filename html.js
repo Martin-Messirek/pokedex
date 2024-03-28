@@ -3,7 +3,7 @@ function renderButtonsHTML(type) {
     <button onclick="loadType('${type}')" class="type-btn btn ${type}">${type}</button>`;
 }
 
-function renderSmallCardsHTML(i, pokemon, type) {
+function renderSmallCardsHTML(i, pokemon) {
     return /*html*/ `
     <div class="card" id="card${i}">
         <h2 class="card-h2">
@@ -15,13 +15,14 @@ function renderSmallCardsHTML(i, pokemon, type) {
                     ${pokemon['types']['0']['type']['name']}
                 </div>
                 <div id="card-type-2-${i}" class="card-type">
-                    ${type}
+                    
                 </div>
             </div>
             <div class="small-img-container">
                 <img id="small-pokemon-image" class="small-pokemon-image" src="${pokemon['sprites']['other']['home']['front_default']}" alt="">
             </div>
         </div>
+        <div class="id-number">#${pokemon['id']}</div>
     </div>
     `;
 }

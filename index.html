@@ -6,7 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Pokedex</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" type="image/x-icon" href="#">
+    <link rel="icon" type="image/x-icon" href="./img/pokemon-1536849_1920.png">
     <link rel="stylesheet" type='text/css' media='screen' href="./styles/style.css">
     <link rel="stylesheet" type='text/css' media='screen' href="./styles/responsive.css">
 
@@ -24,50 +24,52 @@
 
 <body onload="init(), includeHTML(), renderButtons()">
     <div>
-        <div w3-include-html="./templates/header.html"></div>
+
 
         <!-- Buttons and Search -->
         <main class="main">
+            <img class="pokemon-logo" src="./img/pokeball-1594373_1280.png" alt="">
+            <!-- <img class="pokemon-img" src="./img/pokemon-1536849_1920.png" alt="">
+            <img class="pokemon-img" src="./img/pokemon-1673770_1920.png" alt="">
+            <img class="pokemon-img" src="./img/pokemon.png" alt=""> -->
+
+
+            <header>
+                <div class="header">
+                    <h1 class="header-h1">Pokedex</h1>
+                </div>
+            </header>
             <section class="search-section">
                 <div class="form">
-                    <div class="form-container"><label for="name" class="form-label">Search for a Pokémon</label>
+                    <div class="form-container">
+                        <!-- <label for="name" class="form-label">Search for a Pokémon</label> -->
                         <div class="suggestions-container">
                             <div id="suggestions" class="suggestions"></div>
                         </div>
 
 
-                        <input type="text" placeholder="Pokémon" id="name" class="form-input" />
+                        <input type="text" placeholder="Search for a Pokémon" id="name" class="form-input" />
                         <button type="submit" class="btn search-btn">Search</button>
                     </div>
                 </div>
                 <div class="type-btn-container" id="type-btn-container">
-                    <!-- <button onclick="loadType('fire')" class="type-btn btn fire">Fire</button>
-                    <button onclick="loadType('grass')" class="type-btn btn grass">Grass</button>
-                    <button onclick="loadType('water')" class="type-btn btn water">Water</button>
-                    <button onclick="loadType('electric')" class="type-btn btn electric">Electric</button>
-                    <button onclick="loadType('bug')" class="type-btn btn bug">Bug</button>
-                    <button onclick="loadType('normal')" class="type-btn btn normal">Normal</button>
-                    <button onclick="loadType('poison')" class="type-btn btn poison">Poison</button>
-                    <button onclick="loadType('ground')" class="type-btn btn ground">Ground</button>
-                    <button onclick="loadType('fairy')" class="type-btn btn fairy">Fairy</button>
-                    <button onclick="loadType('fighting')" class="type-btn btn fighting">Fighting</button>
-                    <button onclick="loadType('rock')" class="type-btn btn rock">Rock</button>
-                    <button onclick="loadType('ghost')" class="type-btn btn ghost">Ghost</button>
-                    <button onclick="loadType('psychic')" class="type-btn btn psycho">Psychic</button>
-                    <button onclick="loadType('ice')" class="type-btn btn ice">Ice</button>
-                    <button onclick="loadType('dragon')" class="type-btn btn dragon">Dragon</button> -->
 
                 </div>
             </section>
+            <section class="small-card-section">
 
-            <!--  Small Cards  -->
-            <div class="card-container" id="card-container"></div>
-            <div class="card-container" id="type-card-container"></div>
-            <div class="btn-container">
-                <button class="btn load-cards-btn" id="card-btn" onclick="init()">
-                    Load more Pokémons
-                </button>
-            </div>
+                <!--  Small Cards  -->
+                <div class="card-container" id="card-container"></div>
+                <div class="card-container" id="type-card-container"></div>
+                <div class="btn-container">
+                    <button class="btn load-cards-btn" id="card-btn">
+                        Load more Pokémons
+                    </button>
+                    <!-- <button class="btn load-cards-btn" id="card-btn" onclick="init()">
+                        Load more Pokémons
+                    </button> -->
+                </div>
+            </section>
 
 
 
@@ -86,8 +88,17 @@
                 <div class="pokemon-image-container"><img id="pokemon-image" class="pokemon-image" src="" alt=""></div>
 
             </div>
+
+            <footer>
+                <div class="footer">
+                    <a href="https://pokeapi.co/">Pokémon Api</a>
+                    <a href="./legal.html">Legal Notice</a>
+                    <a href="./privacy.html">Privacy</a>
+                </div>
+
+            </footer>
         </main>
-        <div w3-include-html="./templates/footer.html" class="footer"></div>
+
     </div>
 </body>
 

@@ -105,7 +105,7 @@
 --normal-3: hsl(0, 0%, 61%);
 
 --poison-0: hsl(270, 40%, 22%);
---poison-1: hsl(270, 30%, 29%);
+--poison-1: hsl(270, 30%, 32%);
 --poison-2: hsl(270, 30%, 49%);
 --poison-3: hsl(268, 30%, 56%);
 
@@ -124,13 +124,13 @@
 --fighting-2: hsl(23, 55%, 50%);
 --fighting-3: hsl(20, 55%, 60%);
 
---rock-0: hsl(178, 28%, 14%);
---rock-1: hsl(178, 13%, 22%);
+--rock-0: hsl(178, 28%, 22%);
+--rock-1: hsl(178, 13%, 32%);
 --rock-2: hsl(178, 13%, 42%);
 --rock-3: hsl(180, 13%, 50%);
 
 --ghost-0: hsl(279, 80%, 28%);
---ghost-1: hsl(279, 30%, 37%);
+--ghost-1: hsl(279, 30%, 42%);
 --ghost-2: hsl(279, 30%, 57%);
 --ghost-3: hsl(281, 30%, 65%);
 
@@ -150,7 +150,7 @@
 --dragon-3: hsl(248, 67%, 63%);
 
 --flying-0: hsl(198, 57%, 28%);
---flying-1: hsl(198, 46%, 44%);
+--flying-1: hsl(198, 57%, 44%);
 --flying-2: hsl(198, 57%, 54%);
 --flying-3: hsl(198, 57%, 68%);
 
@@ -164,10 +164,10 @@
 --dark-2: hsl(24, 21%, 37%);
 --dark-3: hsl(24, 21%, 47%);
 
---steel-0: hsl(270, 4%, 23%);
---steel-1: hsl(270, 2%, 39%);
---steel-2: hsl(266, 4%, 50%);
---steel-3: hsl(266, 4%, 60%);
+--steel-0: hsl(266, 14%, 23%);
+--steel-1: hsl(266, 14%, 39%);
+--steel-2: hsl(266, 14%, 50%);
+--steel-3: hsl(266, 14%, 60%);
 
   --zinc-033: hsl(0, 0%, 98%);
   --zinc-067: hsl(240, 2%, 98%);
@@ -259,6 +259,14 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
 }
+
+.pokemon-logo {
+  width: 88px;
+  position: absolute;
+  top: 52px;
+  left: 16px;
+  z-index: -1;
+}
  
 /* Large Display */
 
@@ -307,19 +315,20 @@ body {
 
 .card-h2 {
   letter-spacing: var(--letter-spacing);
-  padding-top: 16px;
-  font-size: 32px;
+  padding-top: 14px;
+  font-size: 26px;
   margin: 0;
 }
 .card {
   width: 300px;
-  height: 250px;
+  height: 275px;
   text-transform: capitalize;
   border-radius: var(--border-radius);
   color: white;
   padding: 18px;
   transition: var(--transition);
   box-shadow: var(--shadow-6);
+  position: relative;
 }
 
 .card:hover {
@@ -330,8 +339,8 @@ body {
 
 .small-pokemon-image {
   width: 150px;
-  position: relative;
-  bottom: 16px;
+  /* position: relative;
+  bottom: 16px; */
   transition: var(--transition);
 }
 
@@ -357,7 +366,14 @@ body {
   margin: 8px 0px;
   text-shadow: 1px 1px 0 var(--zinc-467);
   letter-spacing: var(--letter-spacing);
+}
 
+.id-number {
+  position: absolute;
+  bottom: 28px;
+  left: 48px;
+  letter-spacing: var(--letter-spacing);
+  font-weight: 500;
 }
 
 /* Shades of Colours: https://noeldelgado.github.io/shadowlord/#6a31fc */
@@ -492,7 +508,7 @@ nav a:hover {
 }
 
 .header {
-    background-color: var(--primary-600);
+    /* background-color: var(--primary-600); */
     height: 160px;
     display: flex;
     justify-content: center;
@@ -541,10 +557,10 @@ nav {
 /* Main */
 .main {
   
-  background-image: radial-gradient(ellipse at 100px bottom, var(--primary-300), var(--primary-600),black), radial-gradient(ellipse at 100px bottom, var(--primary-300), var(--primary-600),black);
+  background-image: radial-gradient(ellipse at 700px bottom,   #000, blue, #fff);
+/* background-image: radial-gradient(ellipse at 100px bottom, green, blue, yellow,black); */
 
-
-  min-height: calc(100vh - 600px); 
+  min-height: calc(100vh); 
 
 
   /* 100vh - header or header and footer heigth 
@@ -597,11 +613,11 @@ nav {
 }
 
 .footer {
-    background-color: var(--primary-300);
+    /* background-color: var(--primary-300); */
     display: flex;
     flex-flow: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 300px;
   }
   
@@ -613,7 +629,8 @@ nav {
 }
   
 .footer a:hover {
- color: var(--zinc-400);   
+ color: var(--zinc-300);    
+ /* color: var(--primary-200); */
 }
   
 /* Style Legal */
@@ -776,9 +793,19 @@ nav {
 .steel:active {background-color: var(--steel-0);}
 
 .load-cards-btn {
+  /* background: var(--primary-400); */
   font-size: 20px;
   font-weight: 500;
 }
+
+/* .load-cards-btn:hover {
+  background: var(--primary-800);
+
+}
+
+.load-cards-btn:active {
+  background: var(--primary-900);
+} */
 
 .button {
     color: white;
