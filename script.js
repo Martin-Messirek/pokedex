@@ -68,11 +68,13 @@ async function includeHTML() {
 // }
 let pokemons = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'caterpie', 'metapod', 'butterfree', 'weedle', 'kakuna', 'beedrill', 'pidgey', 'pidgeotto', 'pidgeot', 'rattata', 'raticate', 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu', 'raichu', 'sandshrew', 'sandslash', 'nidoran-f', 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume', 'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck', 'mankey', 'primeape', 'growlithe', 'arcanine', 'poliwag', 'poliwhirl', 'poliwrath', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout', 'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler', 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton', 'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder', 'cloyster', 'gastly', 'haunter', 'gengar', 'onix', 'drowzee', 'hypno', 'krabby', 'kingler', 'voltorb', 'electrode', 'exeggcute', 'exeggutor', 'cubone', 'marowak', 'hitmonlee', 'hitmonchan', 'lickitung', 'koffing', 'weezing', 'rhyhorn', 'rhydon', 'chansey', 'tangela', 'kangaskhan', 'horsea', 'seadra', 'goldeen', 'seaking', 'staryu', 'starmie', 'mr-mime', 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir', 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto', 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar', 'kabuto', 'kabutops', 'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 'dragonite', 'mewtwo', 'mew'];
 
-let types = ['water', 'grass', 'fire', 'bug', 'normal', 'poison', 'electric', 'ground', 'fairy', 'fighting', 'rock', 'ghost', 'psychic', 'ice', 'dragon'];
 
-let colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-2)', 'var(--normal-2)', 'var(--poison-2)', 'var(--electric-2)', 'var(--ground-2)', 'var(--fairy-2)', 'var(--fighting-2)', 'var(--rock-2)', 'var(--ghost-2)', 'var(--psychic-2)', 'var(--ice-2)', 'var(--dragon-2)'];
 
-let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--ghost-3)', 'var(--psychic-3)', 'var(--ice-3)', 'var(--dragon-3)'];
+let types = ['water', 'grass', 'fire', 'bug', 'normal', 'poison', 'electric', 'ground', 'fairy', 'fighting', 'rock', 'psychic', 'ice', 'dragon', 'flying', 'ghost', 'dark', 'steel'];
+
+let colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-2)', 'var(--normal-2)', 'var(--poison-2)', 'var(--electric-2)', 'var(--ground-2)', 'var(--fairy-2)', 'var(--fighting-2)', 'var(--rock-2)', 'var(--psychic-2)', 'var(--ice-2)', 'var(--dragon-2)', 'var(--flying-2)', 'var(--ghost-2)', 'var(--dark-2)', 'var(--steel-2)'];
+
+let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--psychic-3)', 'var(--ice-3)', 'var(--dragon-3)', 'var(--flying-3)', 'var(--ghost-3)', 'var(--dark-3)', 'var(--steel-3)'];
 
 
 let currentIndex = 0;
@@ -94,9 +96,9 @@ input.addEventListener('input', function () {
         if (pokemons[i].startsWith(searchInput)) {
             matches.push(capitalize(pokemons[i]));
         }
-        if (matches.length === 5) {
-            break;
-        }
+        // if (matches.length === 5) {
+        //     break;
+        // }
     }
     displaySuggestions(matches);
 });
@@ -121,6 +123,26 @@ function clearSuggestions() {
     suggestions.innerHTML = '';
 }
 
+// function displaySuggestions(matches) {
+//     let suggestionsHTML = '';
+//     for (let i = 0; i < matches.length; i++) {
+//         suggestionsHTML += '<div class="suggestion">' + matches[i] + '</div>';
+//     }
+//     suggestions.innerHTML = suggestionsHTML;
+
+//     let suggestionElements = document.querySelectorAll('.suggestion');
+//     for (let i = 0; i < suggestionElements.length; i++) {
+//         suggestionElements[i].addEventListener('click', function () {
+//             input.value = this.textContent;
+//             clearSuggestions();
+//         });
+//     }
+// }
+
+// function clearSuggestions() {
+//     suggestions.innerHTML = '';
+// }
+
 function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
@@ -128,13 +150,19 @@ function capitalize(word) {
 
 
 
+function renderButtons() {
+    for (let i = 0; i < types.length; i++) {
+        const type = types[i];
+        getId('type-btn-container').innerHTML += renderButtonsHTML(type);
+    }
 
+}
 
 
 
 
 async function init() {
-    // getId('card-container').innerHTML = '';
+    getId('type-card-container').innerHTML = '';
     for (i = currentIndex; i < currentIndex + 20 && i < pokemons.length; i++) {
         await loadSmallCards(i);
     }
@@ -144,13 +172,13 @@ async function init() {
         getId('card-btn').style.cursor = 'default';
         getId('card-btn').style.pointerEvents = 'none'; // removes :hover and :active
         getId('card-btn').style.display = 'none';
-        console.log('disabled')
+        // console.log('disabled')
         // getId('card-btn').style.curser = 'default';
     }
 }
 
 async function loadSmallCards(i) {
-    console.log('load');
+    // console.log('load');
     const element = pokemons[i];
     let url = `https://pokeapi.co/api/v2/pokemon/${element}`;
     let response = await fetch(url);
@@ -160,52 +188,46 @@ async function loadSmallCards(i) {
         return;
     }
     let pokemon = await response.json();
-    console.log(pokemon)
+    // console.log(pokemon)
     renderSmallCards(i, pokemon)
 }
 
 
 function renderSmallCards(i, pokemon) {
-    let type;
-    if (pokemon['types']['1'] === undefined) {
-        type = '';
-    } else {
-        type = pokemon['types']['1']['type']['name'];
-
-    }
-
-    getId('card-container').innerHTML += `
-            <div class="card" id="card${i}">
-            <h2 class="card-h2">${pokemon['name']}</h2>
-                <div class="small-card-main">
-                    <div>
-                    
-                        <div id="card-type-1-${i}" class="card-type">${pokemon['types']['0']['type']['name']}</div>
-                        <div id="card-type-2-${i}" class="card-type">${type}</div>
-                    </div>
-                    <div class="small-img-container">
-                        <img id="small-pokemon-image" class="small-pokemon-image" src="${pokemon['sprites']['other']['home']['front_default']}" alt="">
-                    </div>
-                </div>
-            </div>`;
+    getId('card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
+    showColorTypeOne(i, pokemon);
+}
 
 
-
+function showColorTypeOne(i, pokemon) {
     for (let j = 0; j < types.length; j++) {
-        let type = types[j];
+        let typeName = types[j];
         let color = colors[j];
         let colorLight = colorsLight[j];
         let offsetX = '230px';
         let offsetY = '40px';
-        if (pokemon['types']['0']['type']['name'] == `${type}`) {
-            getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, black, ${color})`;
-
+        if (pokemon['types']['0']['type']['name'] == `${typeName}`) {
+            getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${colorLight}, black, ${color})`;
             getId(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
-            if (getId(`card-type-2-${i}`).innerHTML == '') {
-                getId(`card-type-2-${i}`).style.display = 'none';
-            } else {
-                getId(`card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
-            }
+        }
+        showColorTypeTwo(i, j, pokemon, typeName, colorLight);
+    }
+}
+
+function showColorTypeTwo(i, j, pokemon, typeName, color, colorLight) {
+    for (let j = 0; j < types.length; j++) {
+        let type;
+        // let color = colors[j];
+        // let colorLight = colorsLight[j];
+        if (pokemon['types'].length > 1 && pokemon['types']['1']['type']['name'] == `${typeName}`) {
+            // console.log(pokemon['types'].length)
+            getId(`card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
+            ype = pokemon['types']['1']['type']['name'];
+        } else {
+            // console.log('pokemon type 2')
+            // console.log(pokemon['types'].length)
+            type = '';
+            getId(`card-type-2-${i}`).style.display = 'none';
         }
     }
 }
@@ -213,20 +235,34 @@ function renderSmallCards(i, pokemon) {
 
 // document.getElementById('my-id').style.background = `radial-gradient(ellipse at top, ${color}, #000000), radial-gradient(ellipse at bottom, rgb(100, 102, 133), #000000)`;
 
+
+
 async function loadType(clickedType) {
     getId('card-container').innerHTML = '';
-    for (let i = 0; i < pokemons.length; i++) {
-        const element = pokemons[i];
-        let url = `https://pokeapi.co/api/v2/pokemon/${element}`;
+    getId('type-card-container').innerHTML = '';
+    for (let i = 1; i <= 1025; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
         let response = await fetch(url);
 
+        if (!response.ok) {
+            console.error('Fehler beim Laden von Daten für Pokemon:', element);
+            return;
+        }
+
         let pokemon = await response.json();
-        let typeSearched = pokemon['types'][0]['type']['name']
-        let typeFound;
-        if (typeSearched === clickedType) {
+
+        let typeNullSearched = pokemon['types'][0]['type']['name'];
+        let typeOneSearched = pokemon['types'][0]['type']['name'];
+
+        if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
             renderSmallCards(i, pokemon)
         }
     }
+}
+
+function renderSmallCards(i, pokemon) {
+    getId('type-card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
+    showColorTypeOne(i, pokemon);
 }
 
 
@@ -266,7 +302,7 @@ async function loadLargeDisplay() {
 function renderPokemonInfo() {
     getId('pokemon-name').innerHTML = currentPokemon['name'];
     getId('pokemon-image').src = currentPokemon['sprites']['other']['home']['front_default'];
-    console.log(currentPokemon['sprites']['other']['home']['front_default']);
+    // console.log(currentPokemon['sprites']['other']['home']['front_default']);
 }
 
 

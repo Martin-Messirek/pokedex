@@ -22,7 +22,7 @@
 
 <!-- <body onload="init(), includeHTML()"> -->
 
-<body onload="includeHTML()">
+<body onload="init(), includeHTML(), renderButtons()">
     <div>
         <div w3-include-html="./templates/header.html"></div>
 
@@ -40,8 +40,8 @@
                         <button type="submit" class="btn search-btn">Search</button>
                     </div>
                 </div>
-                <div class="type-btn-container">
-                    <button onclick="loadType('fire')" class="type-btn btn fire">Fire</button>
+                <div class="type-btn-container" id="type-btn-container">
+                    <!-- <button onclick="loadType('fire')" class="type-btn btn fire">Fire</button>
                     <button onclick="loadType('grass')" class="type-btn btn grass">Grass</button>
                     <button onclick="loadType('water')" class="type-btn btn water">Water</button>
                     <button onclick="loadType('electric')" class="type-btn btn electric">Electric</button>
@@ -55,17 +55,22 @@
                     <button onclick="loadType('ghost')" class="type-btn btn ghost">Ghost</button>
                     <button onclick="loadType('psychic')" class="type-btn btn psycho">Psychic</button>
                     <button onclick="loadType('ice')" class="type-btn btn ice">Ice</button>
-                    <button onclick="loadType('dragon')" class="type-btn btn dragon">Dragon</button>
+                    <button onclick="loadType('dragon')" class="type-btn btn dragon">Dragon</button> -->
 
                 </div>
             </section>
 
             <!--  Small Cards  -->
             <div class="card-container" id="card-container"></div>
-
+            <div class="card-container" id="type-card-container"></div>
             <div class="btn-container">
-                <button class="btn load-cards-btn" id="card-btn" onclick="init()">Load more Pokémons</button>
+                <button class="btn load-cards-btn" id="card-btn" onclick="init()">
+                    Load more Pokémons
+                </button>
             </div>
+
+
+
 
 
 

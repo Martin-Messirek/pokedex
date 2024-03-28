@@ -76,23 +76,23 @@
  */
 --fire-0: hsl(0, 95%, 30%);
 --fire-1: hsl(0, 95%, 50%);
---fire-2: hsl(0, 95%, 70%);
---fire-3: hsl(0, 85%, 75%);
+--fire-2: hsl(0, 95%, 68%);
+--fire-3: hsl(0, 95%, 72%);
 
---grass-0: hsl(167, 60%, 20%);
---grass-1: hsl(167, 60%, 35%);
---grass-2: hsl(167, 60%, 55%);
---grass-3: hsl(169, 67%, 62%);
+--grass-0: hsl(167, 80%, 18%);
+--grass-1: hsl(167, 60%, 28%);
+--grass-2: hsl(167, 60%, 44%);
+--grass-3: hsl(169, 67%, 52%);
 
 --water-0: hsl(208, 99%, 35%);
 --water-1: hsl(208, 99%, 53%);
 --water-2: hsl(208, 99%, 73%);
 --water-3: hsl(206, 98%, 76%);
 
---electric-0: hsl(44, 100%, 38%);
---electric-1: hsl(44, 100%, 45%);
---electric-2: hsl(44, 100%, 65%);
---electric-3: hsl(47, 100%, 68%);
+--electric-0: hsl(50, 100%, 20%);
+--electric-1: hsl(50, 100%, 30%);
+--electric-2: hsl(50, 100%, 50%);
+--electric-3: hsl(50, 100%, 60%);
 
 --bug-0: hsl(90, 98%, 10%);
 --bug-1: hsl(90, 48%, 21%);
@@ -101,8 +101,8 @@
 
 --normal-0: hsl(0, 0%, 31%);
 --normal-1: hsl(0, 0%, 41%);
---normal-2: hsl(0, 0%, 61%);
---normal-3: hsl(0, 0%, 69%);
+--normal-2: hsl(0, 0%, 51%);
+--normal-3: hsl(0, 0%, 61%);
 
 --poison-0: hsl(270, 40%, 22%);
 --poison-1: hsl(270, 30%, 29%);
@@ -115,9 +115,9 @@
 --ground-3: hsl(41, 35%, 50%);
 
 --fairy-0: hsl(308, 45%, 45%);
---fairy-1: hsl(308, 37%, 57%);
---fairy-2: hsl(308, 37%, 77%);
---fairy-3: hsl(305, 37%, 82%);
+--fairy-1: hsl(308, 45%, 55%);
+--fairy-2: hsl(308, 45%, 62%);
+--fairy-3: hsl(308, 45%, 72%);
 
 --fighting-0: hsl(23, 85%, 18%);
 --fighting-1: hsl(23, 55%, 30%);
@@ -149,6 +149,25 @@
 --dragon-2: hsl(248, 67%, 51%);
 --dragon-3: hsl(248, 67%, 63%);
 
+--flying-0: hsl(198, 57%, 28%);
+--flying-1: hsl(198, 46%, 44%);
+--flying-2: hsl(198, 57%, 54%);
+--flying-3: hsl(198, 57%, 68%);
+
+--ghost-0: hsl(241, 39%, 16%);
+--ghost-1: hsl(241, 27%, 32%);
+--ghost-2: hsl(239, 39%, 48%);
+--ghost-3: hsl(239, 39%, 64%);
+
+--dark-0: hsl(25, 21%, 20%);
+--dark-1: hsl(25, 22%, 30%);
+--dark-2: hsl(24, 21%, 37%);
+--dark-3: hsl(24, 21%, 47%);
+
+--steel-0: hsl(270, 4%, 23%);
+--steel-1: hsl(270, 2%, 39%);
+--steel-2: hsl(266, 4%, 50%);
+--steel-3: hsl(266, 4%, 60%);
 
   --zinc-033: hsl(0, 0%, 98%);
   --zinc-067: hsl(240, 2%, 98%);
@@ -336,6 +355,7 @@ body {
   width: fit-content;
   border-radius: 28px;
   margin: 8px 0px;
+  text-shadow: 1px 1px 0 var(--zinc-467);
   letter-spacing: var(--letter-spacing);
 
 }
@@ -641,6 +661,8 @@ nav {
   text-transform: capitalize;
   font-size: 20px;
   font-weight: 500;
+  color: white; 
+  text-shadow: 1px 1px 0 var(--zinc-467);
 }
 
 /* .water {background-color: var(--water-0); color: white;}
@@ -693,21 +715,25 @@ nav {
 .ice:active {background-color: var(--ice-2);}
 .dragon:active {background-color: var(--dragon-2);} */
 
-.water {background-color: var(--water-2); color: white;}
-.grass {background-color: var(--grass-2); color: white;}
-.fire {background-color: var(--fire-2); color: white;}
-.bug {background-color: var(--bug-2); color: white;}
-.normal {background-color: var(--normal-2); color: white;}
-.poison {background-color: var(--poison-2); color: white;}
-.electric {background-color: var(--electric-2); color: white;}
-.ground {background-color: var(--ground-2); color: white;}
-.fairy {background-color: var(--fairy-2); color: white;}
-.fighting {background-color: var(--fighting-2); color: white;}
-.rock {background-color: var(--rock-2); color: white;}
-.ghost {background-color: var(--ghost-2); color: white;}
-.psychic {background-color: var(--psychic-2); color: white;}
-.ice {background-color: var(--ice-2); color: white;}
-.dragon {background-color: var(--dragon-2); color: white;}
+.water {background-color: var(--water-2);}
+.grass {background-color: var(--grass-2);}
+.fire {background-color: var(--fire-2);}
+.bug {background-color: var(--bug-2);}
+.normal {background-color: var(--normal-2);}
+.poison {background-color: var(--poison-2);}
+.electric {background-color: var(--electric-2);}
+.ground {background-color: var(--ground-2);}
+.fairy {background-color: var(--fairy-2);}
+.fighting {background-color: var(--fighting-2);}
+.rock {background-color: var(--rock-2);}
+.ghost {background-color: var(--ghost-2);}
+.psychic {background-color: var(--psychic-2);}
+.ice {background-color: var(--ice-2);}
+.dragon {background-color: var(--dragon-2);}
+.flying {background-color: var(--flying-2);}
+.ghost {background-color: var(--ghost-2);}
+.dark {background-color: var(--dark-2);}
+.steel {background-color: var(--steel-2);}
 
 .water:hover {background-color: var(--water-1);}
 .grass:hover {background-color: var(--grass-1);}
@@ -724,6 +750,10 @@ nav {
 .psychic:hover {background-color: var(--psychic-1);}
 .ice:hover {background-color: var(--ice-1);}
 .dragon:hover {background-color: var(--dragon-1);}
+.flying:hover {background-color: var(--flying-1);} 
+.ghost:hover {background-color: var(--ghost-1);} 
+.dark:hover {background-color: var(--dark-1);} 
+.steel:hover {background-color: var(--steel-1);} 
 
 .water:active {background-color: var(--water-0);}
 .grass:active {background-color: var(--grass-0);}
@@ -740,7 +770,10 @@ nav {
 .psychic:active {background-color: var(--psychic-0);}
 .ice:active {background-color: var(--ice-0);}
 .dragon:active {background-color: var(--dragon-0);}
-
+.flying:active {background-color: var(--flying-0);}
+.ghost:active {background-color: var(--ghost-0);}
+.dark:active {background-color: var(--dark-0);}
+.steel:active {background-color: var(--steel-0);}
 
 .load-cards-btn {
   font-size: 20px;
