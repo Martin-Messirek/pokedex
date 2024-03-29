@@ -123,6 +123,11 @@
         top: -50px;
         left: 180px;
     }
+
+    .x-mark-suggestions {
+        top: -56px;
+        left: 172px;
+    }
 }
 
 
@@ -156,6 +161,11 @@
         left: 240px;
     }
 
+    .x-mark-suggestions {
+        top: -56px;
+        left: 232px;
+    }
+
     .pokemon-logo {
          z-index: 2;
     }  
@@ -186,7 +196,12 @@
     .suggestions {
         top: -50px;
         left: 280px;
-}
+    }
+
+    .x-mark-suggestions {
+        top: -56px;
+        left: 272px;
+    }
 
 
 }

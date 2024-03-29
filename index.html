@@ -22,7 +22,7 @@
 
 <!-- <body onload="init(), includeHTML()"> -->
 
-<body onload="init(), includeHTML(), renderButtons()">
+<body onload="init(), renderButtons()">
     <div>
 
 
@@ -45,6 +45,11 @@
                         <!-- <label for="name" class="form-label">Search for a Pokémon</label> -->
                         <div class="suggestions-container">
                             <div id="suggestions" class="suggestions"></div>
+                            <div onclick="clearSuggestions()" id="x-mark-suggestions"
+                                class="medium-icon x-mark-suggestions">
+
+                            </div>
+
                         </div>
 
 
@@ -54,6 +59,9 @@
                 </div>
                 <div class="type-btn-container" id="type-btn-container">
 
+                </div>
+                <div id="chevron-up" class="chevron-up"><a href="#">
+                        <img src="./icons/chevron-up-solid.svg" alt=""></a>
                 </div>
             </section>
             <section class="small-card-section">

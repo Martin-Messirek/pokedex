@@ -1,40 +1,3 @@
-// function sendMail(event) {﻿  // JS von Developer Akademie Modul 5, URL von formspree
-//     event.preventDefault();
-//     const data = new FormData(event.target);
-
-//     fetch("https://formspree.io/f/mbjveadd", {
-//         method: "POST",
-//         body: new FormData(event.target),
-//         headers: {
-//             'Accept': 'application/json'
-//         }
-//     }).then(() => {
-//         window.location.href = "./send_mail.html";
-//     }).catch((error) => {
-//         console.log(error);
-//     });
-// }
-
-
-// async function init() {
-//     await includeHTML();
-// }
-
-async function includeHTML() {
-    let includeElements = document.querySelectorAll('[w3-include-html');
-    for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
-        file = element.getAttribute("w3-include-html"); // file bekommt "./templates/header.html" zugewiesen, "includes/header.html"
-        let resp = await fetch(file);
-        if (resp.ok) {
-            element.innerHTML = await resp.text(); // innerHTML von element ist der header div  
-        } else {
-            element.innerHTML = 'Page not found.';
-        }
-    }
-}
-
-
 // /* Responsive Design */
 
 // function showMenu() {
@@ -60,12 +23,6 @@ async function includeHTML() {
 // f o r down enter i left tab Arrayname left tab Elementname
 // */
 
-
-
-// for (let i = 0; i < syn.length; i++) {
-//     const sd = syn[i];
-
-// }
 let pokemons = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'caterpie', 'metapod', 'butterfree', 'weedle', 'kakuna', 'beedrill', 'pidgey', 'pidgeotto', 'pidgeot', 'rattata', 'raticate', 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu', 'raichu', 'sandshrew', 'sandslash', 'nidoran-f', 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume', 'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck', 'mankey', 'primeape', 'growlithe', 'arcanine', 'poliwag', 'poliwhirl', 'poliwrath', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout', 'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler', 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton', 'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder', 'cloyster', 'gastly', 'haunter', 'gengar', 'onix', 'drowzee', 'hypno', 'krabby', 'kingler', 'voltorb', 'electrode', 'exeggcute', 'exeggutor', 'cubone', 'marowak', 'hitmonlee', 'hitmonchan', 'lickitung', 'koffing', 'weezing', 'rhyhorn', 'rhydon', 'chansey', 'tangela', 'kangaskhan', 'horsea', 'seadra', 'goldeen', 'seaking', 'staryu', 'starmie', 'mr-mime', 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir', 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto', 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar', 'kabuto', 'kabutops', 'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 'dragonite', 'mewtwo', 'mew'];
 
 
@@ -79,16 +36,25 @@ let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--b
 
 let currentIndex = 0;
 let offsetX = '400px';
-let offsetY = '40px';
+let chevronUp = getId('chevron-up');
 function getId(id) {
     return document.getElementById(id);
 }
+// Scroll to Top of Page
 
+window.onscroll = function () {
+    if (window.scrollY > 600) {
+        chevronUp.style.display = 'flex';
+    } else {
+        chevronUp.style.display = 'none';
+    }
+}
 
 // Input Field Autocomplete Suggestions
 
-let input = document.getElementById('name');
-let suggestions = document.getElementById('suggestions');
+let input = getId('name');
+let suggestions = getId('suggestions');
+let xMark = getId('x-mark-suggestions');
 
 input.addEventListener('input', function () {
     let searchInput = this.value.toLowerCase();
@@ -101,15 +67,22 @@ input.addEventListener('input', function () {
             break;
         }
     }
-    displaySuggestions(matches);
+    if (matches.length > 0) {
+        displaySuggestions(matches);
+    } else {
+        clearSuggestions();
+    }
 });
 
 function displaySuggestions(matches) {
+    xMark.innerHTML = `<img class="cursor" src="./icons/circle-xmark-regular.svg" alt="X-Mark"></img>`;
     let suggestionsHTML = '';
+
     for (let i = 0; i < matches.length; i++) {
         suggestionsHTML += '<div class="suggestion">' + matches[i] + '</div>';
     }
     suggestions.innerHTML = suggestionsHTML;
+    suggestionElements.style.boxShadow = 'box-shadow: 14px 14px 2px 1px rgba(89, 14, 129, 0.2)';
 
     let suggestionElements = document.querySelectorAll('.suggestion');
     for (let i = 0; i < suggestionElements.length; i++) {
@@ -122,6 +95,8 @@ function displaySuggestions(matches) {
 
 function clearSuggestions() {
     suggestions.innerHTML = '';
+    suggestions.style.boxShadow = 'none';
+    xMark.innerHTML = '';
 }
 
 // function displaySuggestions(matches) {
