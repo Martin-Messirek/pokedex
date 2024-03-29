@@ -17,58 +17,72 @@
   --fire-0: hsl(0, 95%, 50%);
   --fire-1: hsl(0, 95%, 70%);
   --fire-2: hsl(0, 85%, 75%);
+
   --grass-0: hsl(167, 60%, 20%);
   --grass-0: hsl(167, 60%, 35%);
   --grass-1: hsl(167, 60%, 55%);
   --grass-2: hsl(169, 67%, 62%);
+
   --water-0: hsl(208, 99%, 35%);
   --water-0: hsl(208, 99%, 53%);
   --water-1: hsl(208, 99%, 73%);
   --water-2: hsl(206, 98%, 76%);
+
   --electric-0: hsl(44, 100%, 25%);
   --electric-0: hsl(44, 100%, 45%);
   --electric-1: hsl(44, 100%, 65%);
   --electric-2: hsl(47, 100%, 68%);
+
   --bug-0: hsl(90, 48%, 15%);
   --bug-0: hsl(90, 48%, 21%);
   --bug-1: hsl(90, 48%, 41%);
   --bug-2: hsl(88, 48%, 46%);
+
   --normal-0: hsl(0, 0%, 31%);
   --normal-0: hsl(0, 0%, 41%);
   --normal-1: hsl(0, 0%, 61%);
   --normal-2: hsl(0, 0%, 69%);
+
   --poison-0: hsl(270, 40%, 22%);
   --poison-0: hsl(270, 30%, 29%);
   --poison-1: hsl(270, 30%, 49%);
   --poison-2: hsl(268, 30%, 56%); 
+
   --ground-0: hsl(39, 40%, 16%);
   --ground-0: hsl(39, 35%, 23%);
   --ground-1: hsl(39, 35%, 43%);
   --ground-2: hsl(41, 35%, 50%);
+
   --fairy-0: hsl(308, 42%, 45%);
   --fairy-0: hsl(308, 37%, 57%);
   --fairy-1: hsl(308, 37%, 77%);
   --fairy-2: hsl(305, 37%, 82%);
+
   --fighting-0: hsl(23, 65%, 22%);
   --fighting-0: hsl(23, 55%, 30%);
   --fighting-1: hsl(23, 55%, 50%);
   --fighting-2: hsl(20, 55%, 60%);
+
   --rock-0: hsl(178, 18%, 16%);
   --rock-0: hsl(178, 13%, 22%);
   --rock-1: hsl(178, 13%, 42%);
   --rock-2: hsl(180, 13%, 50%);
+
   --ghost-0: hsl(279, 40%, 30%);
   --ghost-0: hsl(279, 30%, 37%);
   --ghost-1: hsl(279, 30%, 57%);
   --ghost-2: hsl(281, 30%, 65%);
+
   --psychic-0: hsl(336, 66%, 24%);
   --psychic-0: hsl(336, 56%, 32%);
   --psychic-1: hsl(336, 56%, 52%);
   --psychic-2: hsl(336, 64%, 60%);
+
   --ice-0: hsl(191, 78%, 18%);
   --ice-0: hsl(191, 68%, 24%);
   --ice-1: hsl(191, 68%, 44%);
   --ice-2: hsl(190, 68%, 51%);
+
   --dragon-0: hsl(248, 72%, 26%);
   --dragon-0: hsl(248, 67%, 31%);
   --dragon-1: hsl(248, 67%, 51%);
@@ -76,98 +90,98 @@
  */
 --fire-0: hsl(0, 95%, 30%);
 --fire-1: hsl(0, 95%, 50%);
---fire-2: hsl(0, 95%, 68%);
---fire-3: hsl(0, 95%, 72%);
+--fire-2: hsl(0, 95%, 70%);
+--fire-3: hsl(0, 95%, 75%);
 
---grass-0: hsl(167, 80%, 18%);
---grass-1: hsl(167, 60%, 28%);
+--grass-0: hsl(167, 80%, 20%);
+--grass-1: hsl(167, 60%, 35%);
 --grass-2: hsl(167, 60%, 55%);
 --grass-3: hsl(169, 67%, 62%);
 
---water-0: hsl(208, 99%, 35%);
---water-1: hsl(208, 99%, 53%);
---water-2: hsl(208, 99%, 73%);
---water-3: hsl(206, 98%, 76%);
+--water-0: hsl(208, 100%, 38%);
+--water-1: hsl(208, 100%, 48%);
+--water-2: hsl(208, 100%, 60%);
+--water-3: hsl(208, 100%, 70%);
 
---electric-0: hsl(50, 100%, 20%);
---electric-1: hsl(50, 100%, 30%);
+--electric-0: hsl(50, 100%, 35%);
+--electric-1: hsl(50, 100%, 45%);
 --electric-2: hsl(50, 100%, 50%);
 --electric-3: hsl(50, 100%, 60%);
 
---bug-0: hsl(90, 98%, 10%);
---bug-1: hsl(90, 48%, 21%);
---bug-2: hsl(90, 48%, 35%);
---bug-3: hsl(88, 48%, 45%);
+--bug-0: hsl(90, 98%, 25%);
+--bug-1: hsl(90, 98%, 31%);
+--bug-2: hsl(90, 98%, 41%);
+--bug-3: hsl(88, 98%, 46%);
 
---normal-0: hsl(0, 0%, 31%);
---normal-1: hsl(0, 0%, 41%);
---normal-2: hsl(0, 0%, 51%);
---normal-3: hsl(0, 0%, 61%);
+--normal-0: hsl(0, 0%, 41%);
+--normal-1: hsl(0, 0%, 51%);
+--normal-2: hsl(0, 0%, 61%);
+--normal-3: hsl(0, 0%, 69%);
 
---poison-0: hsl(270, 40%, 22%);
---poison-1: hsl(270, 30%, 32%);
+--poison-0: hsl(270, 30%, 36%);
+--poison-1: hsl(270, 30%, 42%);
 --poison-2: hsl(270, 30%, 49%);
 --poison-3: hsl(268, 30%, 56%);
 
---ground-0: hsl(39, 45%, 12%);
---ground-1: hsl(39, 35%, 23%);
+--ground-0: hsl(39, 45%, 26%);
+--ground-1: hsl(39, 35%, 33%);
 --ground-2: hsl(39, 35%, 43%);
 --ground-3: hsl(41, 35%, 50%);
 
---fairy-0: hsl(308, 45%, 45%);
---fairy-1: hsl(308, 45%, 55%);
---fairy-2: hsl(308, 45%, 62%);
---fairy-3: hsl(308, 45%, 72%);
+--fairy-0: hsl(308, 85%, 45%);
+--fairy-1: hsl(308, 85%, 62%);
+--fairy-2: hsl(308, 85%, 72%);
+--fairy-3: hsl(308, 85%, 82%);
 
---fighting-0: hsl(23, 85%, 18%);
---fighting-1: hsl(23, 55%, 30%);
+--fighting-0: hsl(23, 85%, 32%);
+--fighting-1: hsl(23, 55%, 40%);
 --fighting-2: hsl(23, 55%, 50%);
 --fighting-3: hsl(20, 55%, 60%);
 
---rock-0: hsl(178, 28%, 22%);
---rock-1: hsl(178, 13%, 32%);
---rock-2: hsl(178, 13%, 42%);
---rock-3: hsl(180, 13%, 50%);
+--rock-0: hsl(178, 23%, 28%);
+--rock-1: hsl(178, 23%, 32%);
+--rock-2: hsl(178, 23%, 42%);
+--rock-3: hsl(180, 23%, 50%);
 
---ghost-0: rgb(89, 14, 129);
---ghost-1: hsl(279, 30%, 42%);
+--ghost-0: hsl(279, 30%, 44%);
+--ghost-1: hsl(279, 30%, 48%);
 --ghost-2: hsl(279, 30%, 57%);
---ghost-3: hsl(281, 30%, 65%);
+--ghost-3: hsl(279, 30%, 65%);
 
---psychic-0: hsl(336, 86%, 20%);
---psychic-1: hsl(336, 56%, 32%);
+--psychic-0: hsl(336, 56%, 36%);
+--psychic-1: hsl(336, 56%, 42%);
 --psychic-2: hsl(336, 56%, 52%);
---psychic-3: hsl(336, 64%, 60%);
+--psychic-3: hsl(336, 56%, 60%);
 
---ice-0: hsl(191, 98%, 24%);
---ice-1: hsl(191, 68%, 34%);
+--ice-0: hsl(191, 98%, 26%);
+--ice-1: hsl(191, 68%, 36%);
 --ice-2: hsl(191, 68%, 44%);
---ice-3: hsl(190, 68%, 51%);
+--ice-3: hsl(191, 68%, 51%);
 
---dragon-0: hsl(248, 82%, 18%);
---dragon-1: hsl(248, 67%, 31%);
---dragon-2: hsl(248, 67%, 51%);
---dragon-3: hsl(248, 67%, 63%);
+--dragon-0: hsl(248, 77%, 30%);
+--dragon-1: hsl(248, 77%, 44%);
+--dragon-2: hsl(248, 77%, 56%);
+--dragon-3: hsl(248, 77%, 66%);
 
---flying-0: hsl(198, 57%, 28%);
---flying-1: hsl(198, 57%, 44%);
---flying-2: hsl(198, 57%, 54%);
---flying-3: hsl(198, 57%, 68%);
+--flying-0: hsl(198, 67%, 36%);
+--flying-1: hsl(198, 67%, 46%);
+--flying-2: hsl(198, 67%, 54%);
+--flying-3: hsl(198, 67%, 68%);
 
---ghost-0: hsl(241, 39%, 16%);
+/* --ghost-0: hsl(241, 39%, 16%);
 --ghost-1: hsl(241, 27%, 32%);
 --ghost-2: hsl(239, 39%, 48%);
---ghost-3: hsl(239, 39%, 64%);
+--ghost-3: hsl(239, 39%, 64%); */
 
---dark-0: hsl(25, 21%, 20%);
---dark-1: hsl(25, 22%, 30%);
---dark-2: hsl(24, 21%, 37%);
+--dark-0: hsl(25, 21%, 26%);
+--dark-1: hsl(25, 21%, 30%);
+--dark-2: hsl(24, 21%, 35%);
 --dark-3: hsl(24, 21%, 47%);
 
---steel-0: hsl(266, 14%, 23%);
---steel-1: hsl(266, 14%, 39%);
---steel-2: hsl(266, 14%, 50%);
---steel-3: hsl(266, 14%, 60%);
+--steel-0: hsl(266, 20%, 34%);
+--steel-1: hsl(266, 20%, 40%);
+--steel-2: hsl(266, 20%, 48%);
+--steel-3: hsl(266, 20%, 56%);
 
   --zinc-033: hsl(0, 0%, 98%);
   --zinc-067: hsl(240, 2%, 98%);
@@ -648,7 +662,10 @@ nav {
 
 .btn-container {
   display: flex;
+  flex-flow: column;
   justify-content: center;
+  gap: 48px;
+  align-items: center;
   padding: 88px 8px
 }
 
@@ -800,6 +817,11 @@ nav {
   /* background: var(--primary-400); */
   font-size: 20px;
   font-weight: 500;
+  width: 336px;
+}
+
+.more-type-btn {
+  text-transform: capitalize;
 }
 
 /* .load-cards-btn:hover {

@@ -23,7 +23,7 @@
 // f o r down enter i left tab Arrayname left tab Elementname
 // */
 
-let pokemons = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'caterpie', 'metapod', 'butterfree', 'weedle', 'kakuna', 'beedrill', 'pidgey', 'pidgeotto', 'pidgeot', 'rattata', 'raticate', 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu', 'raichu', 'sandshrew', 'sandslash', 'nidoran-f', 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume', 'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck', 'mankey', 'primeape', 'growlithe', 'arcanine', 'poliwag', 'poliwhirl', 'poliwrath', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout', 'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler', 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton', 'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder', 'cloyster', 'gastly', 'haunter', 'gengar', 'onix', 'drowzee', 'hypno', 'krabby', 'kingler', 'voltorb', 'electrode', 'exeggcute', 'exeggutor', 'cubone', 'marowak', 'hitmonlee', 'hitmonchan', 'lickitung', 'koffing', 'weezing', 'rhyhorn', 'rhydon', 'chansey', 'tangela', 'kangaskhan', 'horsea', 'seadra', 'goldeen', 'seaking', 'staryu', 'starmie', 'mr-mime', 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir', 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto', 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar', 'kabuto', 'kabutops', 'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 'dragonite', 'mewtwo', 'mew'];
+// let pokemons = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'caterpie', 'metapod', 'butterfree', 'weedle', 'kakuna', 'beedrill', 'pidgey', 'pidgeotto', 'pidgeot', 'rattata', 'raticate', 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu', 'raichu', 'sandshrew', 'sandslash', 'nidoran-f', 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume', 'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck', 'mankey', 'primeape', 'growlithe', 'arcanine', 'poliwag', 'poliwhirl', 'poliwrath', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout', 'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler', 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton', 'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder', 'cloyster', 'gastly', 'haunter', 'gengar', 'onix', 'drowzee', 'hypno', 'krabby', 'kingler', 'voltorb', 'electrode', 'exeggcute', 'exeggutor', 'cubone', 'marowak', 'hitmonlee', 'hitmonchan', 'lickitung', 'koffing', 'weezing', 'rhyhorn', 'rhydon', 'chansey', 'tangela', 'kangaskhan', 'horsea', 'seadra', 'goldeen', 'seaking', 'staryu', 'starmie', 'mr-mime', 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir', 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto', 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar', 'kabuto', 'kabutops', 'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 'dragonite', 'mewtwo', 'mew'];
 
 
 
@@ -34,7 +34,8 @@ let colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-2)
 let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--psychic-3)', 'var(--ice-3)', 'var(--dragon-3)', 'var(--flying-3)', 'var(--ghost-3)', 'var(--dark-3)', 'var(--steel-3)'];
 
 
-let currentIndex = 0;
+let currentIndex = 1;
+let pokemonsLength = 1025;
 let offsetX = '400px';
 let chevronUp = getId('chevron-up');
 function getId(id) {
@@ -139,28 +140,25 @@ function renderButtons() {
 
 async function init() {
     getId('type-card-container').innerHTML = '';
-    for (i = currentIndex; i < currentIndex + 20 && i < pokemons.length; i++) {
+    for (i = currentIndex; i < currentIndex + 50 && i <= pokemonsLength; i++) {
         await loadSmallCards(i);
     }
-    currentIndex += 20;
-    if (currentIndex > pokemons.length - 1) {
+    currentIndex += 50;
+    if (currentIndex > pokemonsLength - 1) {
         getId('card-btn').setAttribute('disabled', 'true');
         getId('card-btn').style.cursor = 'default';
         getId('card-btn').style.pointerEvents = 'none'; // removes :hover and :active
         getId('card-btn').style.display = 'none';
-        // console.log('disabled')
-        // getId('card-btn').style.curser = 'default';
     }
 }
 
 async function loadSmallCards(i) {
-    // console.log('load');
-    const element = pokemons[i];
-    let url = `https://pokeapi.co/api/v2/pokemon/${element}`;
+
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let response = await fetch(url);
 
     if (!response.ok) {
-        console.error('Fehler beim Laden von Daten für Pokemon:', element);
+        console.error('Fehler beim Laden von Daten für Pokemon:', url);
         return;
     }
     let pokemon = await response.json();
@@ -216,30 +214,53 @@ function showColorTypeTwo(i, j, pokemon, typeName, color, colorLight) {
 // var color = '#ff0000'; // Beispielwert für die Farbe, kann durch eine andere Farbe ersetzt werden
 
 // document.getElementById('my-id').style.background = `radial-gradient(ellipse at top, ${color}, #000000), radial-gradient(ellipse at bottom, rgb(100, 102, 133), #000000)`;
+// getId('type-card-container').innerHTML = '';
+// for (i = currentIndex; i < currentIndex + 20 && i < pokemons.length; i++) {
+//     await loadSmallCards(i);
 
 
-
-async function loadType(clickedType) {
+function loadType(clickedType) {
     getId('card-container').innerHTML = '';
     getId('type-card-container').innerHTML = '';
-    for (let i = 1; i <= 1025; i++) {
+
+    loadMoreTypePokemons(clickedType);
+    let count = 0;
+    if (count >= pokemonsLength) {
+        getId('more-type-btn').setAttribute('disabled', 'true');
+        getId('more-type-btn').style.cursor = 'default';
+        getId('more-type-btn').style.pointerEvents = 'none'; // removes :hover and :active
+        getId('more-type-btn').style.display = 'none';
+    }
+}
+
+async function loadMoreTypePokemons(clickedType) {
+    let count = 0;
+    for (let i = 1; i <= pokemonsLength; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
         let response = await fetch(url);
 
         if (!response.ok) {
-            console.error('Fehler beim Laden von Daten für Pokemon:', element);
+            console.error('Fehler beim Laden von Daten für Pokemon:', url);
             return;
         }
 
         let pokemon = await response.json();
 
         let typeNullSearched = pokemon['types'][0]['type']['name'];
-        let typeOneSearched = pokemon['types'][0]['type']['name'];
+        let typeOneSearched = pokemon['types'][1]['type']['name'];
 
         if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
-            renderSmallCardsSameType(i, pokemon)
+            renderSmallCardsSameType(i, pokemon);
+            count++;
+            if (count === 50) {
+                break;
+            }
         }
     }
+
+    showMoreTypeButton(clickedType);
+
+
 }
 
 function renderSmallCardsSameType(i, pokemon) {
@@ -248,6 +269,17 @@ function renderSmallCardsSameType(i, pokemon) {
 }
 
 
+function showMoreTypeButton(clickedType) {
+    getId('more-type-btn-container').innerHTML = `<button onclick="loadMoreTypePokemons('${clickedType}')" class="btn load-cards-btn more-type-btn" id="more-type-btn">Load ${clickedType} Pokémons</button>`;
+    let index = types.indexOf(clickedType);
+    getId('more-type-btn').style.backgroundColor = `${colorsLight[index]}`;
+    getId('more-type-btn').onmouseover = function () {
+        this.style.backgroundColor = `${colors[index]}`;
+    }
+    getId('more-type-btn').onmouseout = function () {
+        this.style.backgroundColor = `${colorsLight[index]}`;
+    }
+}
 
 
 
