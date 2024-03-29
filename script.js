@@ -1,31 +1,3 @@
-// /* Responsive Design */
-
-// function showMenu() {
-//     // document.getElementById('overlay-menu').classList.add('show-overlay-menu');
-//     document.getElementById('overlay-menu').classList.remove('overlay-menu-d-none');
-// }
-// function closeMenu() {
-//     // document.getElementById('overlay-menu').classList.remove('show-overlay-menu');
-//     document.getElementById('overlay-menu').classList.add('overlay-menu-d-none');
-// }
-
-// /* function getId(id) {
-//     return document.getElementById(id);
-// } 
-// Plus bei Zahlen
-// function getPriceFromInput() {
-//     let price = +getValueFromInput('price');
-//     return price;   
-// }
-
-// For-Schleife:
-
-// f o r down enter i left tab Arrayname left tab Elementname
-// */
-
-// let pokemons = ['bulbasaur', 'ivysaur', 'venusaur', 'charmander', 'charmeleon', 'charizard', 'squirtle', 'wartortle', 'blastoise', 'caterpie', 'metapod', 'butterfree', 'weedle', 'kakuna', 'beedrill', 'pidgey', 'pidgeotto', 'pidgeot', 'rattata', 'raticate', 'spearow', 'fearow', 'ekans', 'arbok', 'pikachu', 'raichu', 'sandshrew', 'sandslash', 'nidoran-f', 'nidorina', 'nidoqueen', 'nidoran-m', 'nidorino', 'nidoking', 'clefairy', 'clefable', 'vulpix', 'ninetales', 'jigglypuff', 'wigglytuff', 'zubat', 'golbat', 'oddish', 'gloom', 'vileplume', 'paras', 'parasect', 'venonat', 'venomoth', 'diglett', 'dugtrio', 'meowth', 'persian', 'psyduck', 'golduck', 'mankey', 'primeape', 'growlithe', 'arcanine', 'poliwag', 'poliwhirl', 'poliwrath', 'abra', 'kadabra', 'alakazam', 'machop', 'machoke', 'machamp', 'bellsprout', 'weepinbell', 'victreebel', 'tentacool', 'tentacruel', 'geodude', 'graveler', 'golem', 'ponyta', 'rapidash', 'slowpoke', 'slowbro', 'magnemite', 'magneton', 'farfetchd', 'doduo', 'dodrio', 'seel', 'dewgong', 'grimer', 'muk', 'shellder', 'cloyster', 'gastly', 'haunter', 'gengar', 'onix', 'drowzee', 'hypno', 'krabby', 'kingler', 'voltorb', 'electrode', 'exeggcute', 'exeggutor', 'cubone', 'marowak', 'hitmonlee', 'hitmonchan', 'lickitung', 'koffing', 'weezing', 'rhyhorn', 'rhydon', 'chansey', 'tangela', 'kangaskhan', 'horsea', 'seadra', 'goldeen', 'seaking', 'staryu', 'starmie', 'mr-mime', 'scyther', 'jynx', 'electabuzz', 'magmar', 'pinsir', 'tauros', 'magikarp', 'gyarados', 'lapras', 'ditto', 'eevee', 'vaporeon', 'jolteon', 'flareon', 'porygon', 'omanyte', 'omastar', 'kabuto', 'kabutops', 'aerodactyl', 'snorlax', 'articuno', 'zapdos', 'moltres', 'dratini', 'dragonair', 'dragonite', 'mewtwo', 'mew'];
-
-
 
 let types = ['water', 'grass', 'fire', 'bug', 'normal', 'poison', 'electric', 'ground', 'fairy', 'fighting', 'rock', 'psychic', 'ice', 'dragon', 'flying', 'ghost', 'dark', 'steel'];
 
@@ -33,14 +5,18 @@ let colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-2)
 
 let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--psychic-3)', 'var(--ice-3)', 'var(--dragon-3)', 'var(--flying-3)', 'var(--ghost-3)', 'var(--dark-3)', 'var(--steel-3)'];
 
-
 let currentIndex = 1;
-let pokemonsLength = 1025;
+let currentTypeIndex = 1;
+let count = 0;
+let pokemonsLength = 1026;
 let offsetX = '400px';
 let chevronUp = getId('chevron-up');
+
+
 function getId(id) {
     return document.getElementById(id);
 }
+
 // Scroll to Top of Page
 
 window.onscroll = function () {
@@ -100,40 +76,97 @@ function clearSuggestions() {
     xMark.innerHTML = '';
 }
 
-// function displaySuggestions(matches) {
-//     let suggestionsHTML = '';
-//     for (let i = 0; i < matches.length; i++) {
-//         suggestionsHTML += '<div class="suggestion">' + matches[i] + '</div>';
-//     }
-//     suggestions.innerHTML = suggestionsHTML;
-
-//     let suggestionElements = document.querySelectorAll('.suggestion');
-//     for (let i = 0; i < suggestionElements.length; i++) {
-//         suggestionElements[i].addEventListener('click', function () {
-//             input.value = this.textContent;
-//             clearSuggestions();
-//         });
-//     }
-// }
-
-// function clearSuggestions() {
-//     suggestions.innerHTML = '';
-// }
-
 function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-
-
+// Type Buttons
 
 function renderButtons() {
     for (let i = 0; i < types.length; i++) {
         const type = types[i];
         getId('type-btn-container').innerHTML += renderButtonsHTML(type);
     }
-
 }
+// Load Small Cards
+
+// let pokemons = [];
+// async function loadAll(clickedType) {
+
+//     for (let i = 1; i <= pokemonsLength; i++) {
+//         let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+//         let response = await fetch(url);
+
+//         if (!response.ok) {
+//             console.error('Fehler beim Laden von Daten für Pokemon:', url);
+//             return;
+//         }
+
+//         let pokemon = await response.json();
+//         pokemons.push(pokemon);
+
+//     } console.log(pokemons);
+// }
+
+
+loadAll();
+
+
+let pokemons = [];
+
+async function loadBatch(startIndex, batchSize) {
+    const promises = [];
+    for (let i = startIndex; i < startIndex + batchSize; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+        promises.push(fetch(url));
+    }
+
+    const responses = await Promise.all(promises);
+
+    for (const response of responses) {
+        if (!response.ok) {
+            console.error('Fehler beim Laden von Daten für Pokemon:', response.url);
+            return;
+        }
+        const pokemon = await response.json();
+        pokemons.push(pokemon);
+    }
+}
+
+async function loadAll(clickedType) {
+    const batchSize = 50;
+    for (let i = 1; i <= pokemonsLength; i += batchSize) {
+        if (i + batchSize > pokemonsLength) {
+            // Falls das nächste Batch über die maximale Anzahl hinausgehen würde, berechne die tatsächliche Restmenge
+            const remainingPokemons = pokemonsLength - i;
+            await loadBatch(i, remainingPokemons);
+        } else {
+            await loadBatch(i, batchSize);
+        }
+    }
+
+    console.log(pokemons);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -144,7 +177,7 @@ async function init() {
         await loadSmallCards(i);
     }
     currentIndex += 50;
-    if (currentIndex > pokemonsLength - 1) {
+    if (currentIndex >= pokemonsLength) {
         getId('card-btn').setAttribute('disabled', 'true');
         getId('card-btn').style.cursor = 'default';
         getId('card-btn').style.pointerEvents = 'none'; // removes :hover and :active
@@ -181,14 +214,6 @@ function showColorTypeOne(i, pokemon) {
 
         if (pokemon['types']['0']['type']['name'] == `${typeName}`) {
             getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, black, ${color})`;
-            //     getId(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
-            // }
-
-            // if (pokemon['types']['0']['type']['name'] == `${typeName}`) {
-            // getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, ${color},  ${colorLight}, #fff,  #000, ${colorLight}, ${color}, ${colorLight}, ${color}, ${colorLight})`;
-
-            // getId(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} top, ${color}, ${colorLight}, #333, #fff, #000, ${colorLight},  ${color}, ${colorLight}, ${colorLight})`;
-
 
             getId(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
         }
@@ -220,34 +245,24 @@ function showColorTypeTwo(i, j, pokemon, typeName, color, colorLight) {
 
 
 function loadType(clickedType) {
+    currentIndex = 1;  // set to 51 onload
     getId('card-container').innerHTML = '';
     getId('type-card-container').innerHTML = '';
 
     loadMoreTypePokemons(clickedType);
-    let count = 0;
-    if (count >= pokemonsLength) {
-        getId('more-type-btn').setAttribute('disabled', 'true');
-        getId('more-type-btn').style.cursor = 'default';
-        getId('more-type-btn').style.pointerEvents = 'none'; // removes :hover and :active
-        getId('more-type-btn').style.display = 'none';
-    }
+
 }
 
 async function loadMoreTypePokemons(clickedType) {
-    let count = 0;
-    for (let i = 1; i <= pokemonsLength; i++) {
-        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
-        let response = await fetch(url);
 
-        if (!response.ok) {
-            console.error('Fehler beim Laden von Daten für Pokemon:', url);
-            return;
-        }
-
-        let pokemon = await response.json();
-
+    for (let i = currentTypeIndex; i <= pokemonsLength; i++) {
+        let pokemon = await pokemons[i];
+        // console.log(pokemon)
         let typeNullSearched = pokemon['types'][0]['type']['name'];
-        let typeOneSearched = pokemon['types'][1]['type']['name'];
+        let typeOneSearched = '';
+        if (pokemon['types'][i] > 1) {
+            typeOneSearched = pokemon['types'][1]['type']['name'];
+        }
 
         if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
             renderSmallCardsSameType(i, pokemon);
@@ -256,17 +271,47 @@ async function loadMoreTypePokemons(clickedType) {
                 break;
             }
         }
+        currentTypeIndex++;
+    }
+    currentTypeIndex++;
+
+    let typeCount = 0;
+    for (let i = currentTypeIndex; i < pokemonsLength; i++) {
+        const pokemon = pokemons[currentTypeIndex];
+        let typeNullSearched = pokemon['types'][0]['type']['name'];
+        console.log('Pokemon: ' + pokemon);
+        let typeOneSearched = '';
+        if (pokemon['types'][i] > 1) {
+            typeOneSearched = pokemon['types'][1]['type']['name'];
+        }
+
+
+
+        if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
+            typeCount++;
+        }
+        // console.log('Type Count: ' + typeCount);
+        if (typeCount == 0) {
+            getId('more-type-btn').setAttribute('disabled', 'true');
+            getId('more-type-btn').style.cursor = 'default';
+            getId('more-type-btn').style.pointerEvents = 'none'; // removes :hover and :active
+            getId('more-type-btn').style.display = 'none';
+        }
+        showMoreTypeButton(clickedType);
     }
 
-    showMoreTypeButton(clickedType);
-
-
 }
+
+
 
 function renderSmallCardsSameType(i, pokemon) {
     getId('type-card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
     showColorTypeOne(i, pokemon);
 }
+
+
+
+
 
 
 function showMoreTypeButton(clickedType) {
