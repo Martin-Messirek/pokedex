@@ -60,9 +60,19 @@
                 <div class="type-btn-container" id="type-btn-container">
 
                 </div>
-                <div id="chevron-up" class="chevron-up"><a href="#">
-                        <img src="./icons/chevron-up-solid.svg" alt=""></a>
+
+                <div id="chevron-up" class="chevron-up">
+                    <a href="#">
+                        <img src="./icons/chevron-up-solid.svg" alt="">
+                    </a>
                 </div>
+
+                <div onclick="scrollDown()" id="chevron-down" class="chevron-down">
+                    <a>
+                        <img src="./icons/chevron-down-solid.svg" alt="">
+                    </a>
+                </div>
+
             </section>
             <section class="small-card-section">
 
@@ -70,7 +80,12 @@
                 <div class="card-container" id="card-container"></div>
                 <div class="card-container" id="type-card-container"></div>
                 <div class="btn-container">
-                    <div class="more-type-btn-container" id="more-type-btn-container"></div>
+                    <div class="more-type-btn-container" id="more-type-btn-container">
+                        <button onclick="loadMoreTypePokemons('${clickedType}')"
+                            class="btn load-cards-btn more-type-btn d-none" id="more-type-btn">
+                            <p id="more-type-btn-text" class="more-type-btn-text"></p>
+                        </button>
+                    </div>
                     <div>
                         <button class="btn load-cards-btn" id="card-btn" onclick="init()">
                             Load more Pokémons

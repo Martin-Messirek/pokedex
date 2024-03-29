@@ -8,7 +8,7 @@ let colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--b
 let currentIndex = 1;
 let currentTypeIndex = 1;
 let count = 0;
-let pokemonsLength = 1026;
+let pokemonsLength = 1025;
 let offsetX = '400px';
 let chevronUp = getId('chevron-up');
 
@@ -145,7 +145,7 @@ async function loadAll(clickedType) {
         }
     }
 
-    console.log(pokemons);
+    // console.log(pokemons);
 }
 
 
@@ -185,6 +185,7 @@ async function init() {
     }
 }
 
+
 async function loadSmallCards(i) {
 
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -195,14 +196,22 @@ async function loadSmallCards(i) {
         return;
     }
     let pokemon = await response.json();
-    // console.log(pokemon)
+
     renderSmallCards(i, pokemon)
+    console.log('fetch:' + pokemon)
 }
 
 
 function renderSmallCards(i, pokemon) {
     getId('card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
     showColorTypeOne(i, pokemon);
+}
+
+function scrollDown() {
+    window.scrollTo({
+        top: document.body.scrollHeight - 1200,
+        behavior: 'smooth'
+    });
 }
 
 
@@ -253,15 +262,22 @@ function loadType(clickedType) {
 
 }
 
-async function loadMoreTypePokemons(clickedType) {
+function loadMoreTypePokemons(clickedType) {
+    // console.log('clicked' + clickedType);
+    getId('more-type-btn').setAttribute('disabled', 'false');
+    getId('more-type-btn').style.cursor = 'pointer';
+    getId('more-type-btn').style.pointerEvents = 'auto';
+    getId('more-type-btn').style.display = 'inline';
 
-    for (let i = currentTypeIndex; i <= pokemonsLength; i++) {
-        let pokemon = await pokemons[i];
-        // console.log(pokemon)
-        let typeNullSearched = pokemon['types'][0]['type']['name'];
+    for (let i = currentTypeIndex; i < pokemonsLength; i++) {
+        let pokemon = pokemons[i];
+        console.log('array:' + pokemon);
+        // console.log(pokemon['types'])
+        // if (!pokemon['types']) continue; // Skip if types are not defined
+        let typeNullSearched = pokemon['types']['0']['type']['name'];
         let typeOneSearched = '';
-        if (pokemon['types'][i] > 1) {
-            typeOneSearched = pokemon['types'][1]['type']['name'];
+        if (pokemon['types'].length > 1) {
+            typeOneSearched = pokemon['types']['1']['type']['name'];
         }
 
         if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
@@ -278,11 +294,12 @@ async function loadMoreTypePokemons(clickedType) {
     let typeCount = 0;
     for (let i = currentTypeIndex; i < pokemonsLength; i++) {
         const pokemon = pokemons[currentTypeIndex];
-        let typeNullSearched = pokemon['types'][0]['type']['name'];
-        console.log('Pokemon: ' + pokemon);
+        if (!pokemon['types']) continue; // Skip if types are not defined
+        let typeNullSearched = pokemon['types']['0']['type']['name'];
+        // console.log('Pokemon: ' + pokemon['name']);
         let typeOneSearched = '';
-        if (pokemon['types'][i] > 1) {
-            typeOneSearched = pokemon['types'][1]['type']['name'];
+        if (pokemon['types'].length > 1) {
+            typeOneSearched = pokemon['types']['1']['type']['name'];
         }
 
 
@@ -297,6 +314,8 @@ async function loadMoreTypePokemons(clickedType) {
             getId('more-type-btn').style.pointerEvents = 'none'; // removes :hover and :active
             getId('more-type-btn').style.display = 'none';
         }
+
+
         showMoreTypeButton(clickedType);
     }
 
@@ -315,8 +334,10 @@ function renderSmallCardsSameType(i, pokemon) {
 
 
 function showMoreTypeButton(clickedType) {
-    getId('more-type-btn-container').innerHTML = `<button onclick="loadMoreTypePokemons('${clickedType}')" class="btn load-cards-btn more-type-btn" id="more-type-btn">Load ${clickedType} Pokémons</button>`;
+
     let index = types.indexOf(clickedType);
+    getId('more-type-btn-text').innerHTML = `Load ${clickedType}
+                            Pokémons`;
     getId('more-type-btn').style.backgroundColor = `${colorsLight[index]}`;
     getId('more-type-btn').onmouseover = function () {
         this.style.backgroundColor = `${colors[index]}`;
