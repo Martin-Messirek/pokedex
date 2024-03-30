@@ -8,7 +8,7 @@ let pokemons = [];
 let currentIndex = 1;
 let currentTypeIndex = 1;
 let count = 0;
-let pokemonsLength = 1001;
+let pokemonsLength = 1025;
 const offsetX = '400px';
 const chevronUp = document.getElementById('chevron-up');
 const suggestionsList = document.getElementById('suggestions');
@@ -17,23 +17,66 @@ const xMark = document.getElementById('x-mark-suggestions');
 const cardBtn = document.getElementById('card-btn');
 const moreTypeBtn = document.getElementById('more-type-btn');
 
-// function ready() {
-//     loadSmallCardsBatch();
-//     loadAll();
-// }
-// if (document.readyState == "loading") {
-//     document.addEventListener("DOMContentLoaded", ready);
-// } else {
-//     ready();
-// }
 
+// Load the Pokemon JSON in Batches and push them into an Array
+
+async function init() {
+    await loadBatch(1, 50);
+    renderButtons();
+    loadSmallCardsBatch();
+    loadAll();
+}
+
+async function loadAll() {
+    const batchSize = 50;
+    for (let i = 51; i <= pokemonsLength; i += batchSize) {
+        if (i + batchSize > pokemonsLength) {
+            // Falls das nächste Batch über die maximale Anzahl hinausgehen würde, berechne die tatsächliche Restmenge
+            const remainingPokemons = pokemonsLength - i;
+            await loadBatch(i, remainingPokemons);
+        } else {
+            await loadBatch(i, batchSize);
+        } console.log(pokemons[i])
+    }
+}
+
+async function loadBatch(startIndex, batchSize) {
+    const promises = [];
+    for (let i = startIndex; i < startIndex + batchSize; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
+        promises.push(fetch(url));
+    }
+
+    const responses = await Promise.all(promises);
+
+    for (const response of responses) {
+        if (!response.ok) {
+            console.error('Fehler beim Laden von Daten für Pokemon:', response.url);
+            return;
+        }
+        const pokemon = await response.json();
+        pokemons.push(pokemon);
+        // pokemons.push(pokemon['species']['name']);
+        // pokemons.push(pokemon['id']);
+        // pokemons.push(pokemon['sprites']['other']['home']['front_default']);
+        // pokemons.push(pokemon['types']);
+
+
+    }
+}
 
 // Load Initial Page - Display Small Pokemon Cards 
 
-async function loadSmallCardsBatch() {
+// async function loadSmallCardsBatch() {
+//     document.getElementById('type-card-container').innerHTML = '';
+//     for (let i = currentIndex; i < currentIndex + 50 && i <= pokemonsLength; i++) {
+//         await loadSmallCards(i);
+//     }
+function loadSmallCardsBatch() {
     document.getElementById('type-card-container').innerHTML = '';
     for (let i = currentIndex; i < currentIndex + 50 && i <= pokemonsLength; i++) {
-        await loadSmallCards(i);
+
+        renderSmallCards(i);
     }
     currentIndex += 50;
 
@@ -45,20 +88,26 @@ async function loadSmallCardsBatch() {
     }
 }
 
-async function loadSmallCards(i) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-    let response = await fetch(url);
+// async function loadSmallCards(i) {
+//     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+//     let response = await fetch(url);
 
-    if (!response.ok) {
-        console.error('Fehler beim Laden von Daten für Pokemon:', url);
-        return;
-    }
-    let pokemon = await response.json();
+//     if (!response.ok) {
+//         console.error('Fehler beim Laden von Daten für Pokemon:', url);
+//         return;
+//     }
+//     let pokemon = await response.json();
 
-    renderSmallCards(i, pokemon)
-}
+//     renderSmallCards(i, pokemon)
+// }
 
-function renderSmallCards(i, pokemon) {
+// function renderSmallCards(i, pokemon) {
+//     document.getElementById('card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
+//     showColorTypeOne(i, pokemon);
+// }
+
+function renderSmallCards(i) {
+    let pokemon = pokemons[i];
     document.getElementById('card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
     showColorTypeOne(i, pokemon);
 }
@@ -95,6 +144,7 @@ function showColorTypeTwo(i, pokemon) {
         }
     }
 }
+
 // Scroll to Top and Bottom of Page
 
 window.onscroll = function () {
@@ -160,5 +210,10 @@ function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-// Load the Pokemon JSON in Batches and them push into an Array
+
+
+
+
+
+
 

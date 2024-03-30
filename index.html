@@ -15,14 +15,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Saira:ital,wght@0,100..900;1,100..900&family=Sono:wght@200..800&family=Teko:wght@300..700&display=swap"
         rel="stylesheet">
-
-    <script src="script.js" async></script>
-    <script src="html.js" async></script>
 </head>
 
-<!-- <body onload="init(), includeHTML()"> -->
+<!-- <body onload="loadBatch(), includeHTML()"> -->
 
-<body onload="init(), renderButtons()">
+<body onload="renderButtons(), loadSmallCardsBatch(), loadAll()">
+
     <div>
 
 
@@ -87,7 +85,7 @@
                         </button>
                     </div>
                     <div>
-                        <button class="btn load-cards-btn" id="card-btn" onclick="init()">
+                        <button class="btn load-cards-btn" id="card-btn" onclick="loadSmallCardsBatch()">
                             Load more Pokémons
                         </button>
                     </div>
@@ -114,15 +112,19 @@
 
             <footer>
                 <div class="footer">
-                    <a href="https://pokeapi.co/">Pokémon Api</a>
-                    <a href="./legal.html">Legal Notice</a>
-                    <a href="./privacy.html">Privacy</a>
+                    <a href="https://pokeapi.co/" target="_blank">Pokémon Api</a>
+                    <a href="./legal.html" target="_blank">Legal Notice</a>
+                    <a href="./privacy.html" target="_blank">Privacy</a>
                 </div>
 
             </footer>
         </main>
 
     </div>
+    <script src="script.js"></script>
+    <script src="types.js"></script>
+    <script src="large.js"></script>
+    <script src="html.js"></script>
 </body>
 
 </html>
