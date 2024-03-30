@@ -915,6 +915,7 @@ nav {
   color: white;
   letter-spacing: var(--letter-spacing);
   font-weight: 500;
+  border-radius: var(--border-radius);
 }
 
 .suggestion:hover {

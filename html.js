@@ -15,7 +15,6 @@ function renderSmallCardsHTML(i, pokemon) {
                     ${pokemon['types']['0']['type']['name']}
                 </div>
                 <div id="card-type-2-${i}" class="card-type">
-                    
                 </div>
             </div>
             <div class="small-img-container">

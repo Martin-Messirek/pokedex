@@ -1,4 +1,3 @@
-
 let types = ['water', 'grass', 'fire', 'bug', 'normal', 'poison', 'electric', 'ground', 'fairy', 'fighting', 'rock', 'psychic', 'ice', 'dragon', 'flying', 'ghost', 'dark', 'steel'];
 
 let colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-2)', 'var(--normal-2)', 'var(--poison-2)', 'var(--electric-2)', 'var(--ground-2)', 'var(--fairy-2)', 'var(--fighting-2)', 'var(--rock-2)', 'var(--psychic-2)', 'var(--ice-2)', 'var(--dragon-2)', 'var(--flying-2)', 'var(--ghost-2)', 'var(--dark-2)', 'var(--steel-2)'];
@@ -11,13 +10,15 @@ let count = 0;
 let pokemonsLength = 1025;
 let offsetX = '400px';
 let chevronUp = getId('chevron-up');
-
+let suggestionsList = getId('suggestions');
+let input = getId('name');
+let xMark = getId('x-mark-suggestions');
 
 function getId(id) {
     return document.getElementById(id);
 }
 
-// Scroll to Top of Page
+// Scroll to Top and Bottom of Page
 
 window.onscroll = function () {
     if (window.scrollY > 600) {
@@ -27,18 +28,21 @@ window.onscroll = function () {
     }
 }
 
-// Input Field Autocomplete Suggestions
+function scrollDown() {
+    window.scrollTo({
+        top: document.body.scrollHeight - 1200,
+        behavior: 'smooth'
+    });
+}
 
-let input = getId('name');
-let suggestions = getId('suggestions');
-let xMark = getId('x-mark-suggestions');
+// Input Field Autocomplete Suggestions
 
 input.addEventListener('input', function () {
     let searchInput = this.value.toLowerCase();
     let matches = [];
     for (let i = 0; i < pokemons.length; i++) {
-        if (pokemons[i].startsWith(searchInput)) {
-            matches.push(capitalize(pokemons[i]));
+        if (pokemons[i]['species']['name'].startsWith(searchInput)) {
+            matches.push(capitalize(pokemons[i]['species']['name']));
         }
         if (matches.length === 8) {
             break;
@@ -54,12 +58,11 @@ input.addEventListener('input', function () {
 function displaySuggestions(matches) {
     xMark.innerHTML = `<img class="cursor" src="./icons/circle-xmark-regular.svg" alt="X-Mark"></img>`;
     let suggestionsHTML = '';
-
     for (let i = 0; i < matches.length; i++) {
         suggestionsHTML += '<div class="suggestion">' + matches[i] + '</div>';
     }
-    suggestions.innerHTML = suggestionsHTML;
-    suggestionElements.style.boxShadow = 'box-shadow: 14px 14px 2px 1px rgba(89, 14, 129, 0.2)';
+    suggestionsList.innerHTML = suggestionsHTML;
+    suggestionsList.style.boxShadow = '14px 14px 2px 1px rgba(89, 14, 129, 0.2)';
 
     let suggestionElements = document.querySelectorAll('.suggestion');
     for (let i = 0; i < suggestionElements.length; i++) {
@@ -71,8 +74,8 @@ function displaySuggestions(matches) {
 }
 
 function clearSuggestions() {
-    suggestions.innerHTML = '';
-    suggestions.style.boxShadow = 'none';
+    suggestionsList.innerHTML = '';
+    suggestionsList.style.boxShadow = 'none';
     xMark.innerHTML = '';
 }
 
@@ -80,7 +83,7 @@ function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-// Type Buttons
+// Render Pokemon-Type Buttons
 
 function renderButtons() {
     for (let i = 0; i < types.length; i++) {
@@ -109,10 +112,24 @@ function renderButtons() {
 // }
 
 
-loadAll();
-
+// Load the Pokemon JSON in Batches and them push into an Array
 
 let pokemons = [];
+
+loadAll();
+
+async function loadAll() {
+    const batchSize = 50;
+    for (let i = 1; i <= pokemonsLength; i += batchSize) {
+        if (i + batchSize > pokemonsLength) {
+            // Falls das nächste Batch über die maximale Anzahl hinausgehen würde, berechne die tatsächliche Restmenge
+            const remainingPokemons = pokemonsLength - i;
+            await loadBatch(i, remainingPokemons);
+        } else {
+            await loadBatch(i, batchSize);
+        }
+    }
+}
 
 async function loadBatch(startIndex, batchSize) {
     const promises = [];
@@ -132,44 +149,6 @@ async function loadBatch(startIndex, batchSize) {
         pokemons.push(pokemon);
     }
 }
-
-async function loadAll(clickedType) {
-    const batchSize = 50;
-    for (let i = 1; i <= pokemonsLength; i += batchSize) {
-        if (i + batchSize > pokemonsLength) {
-            // Falls das nächste Batch über die maximale Anzahl hinausgehen würde, berechne die tatsächliche Restmenge
-            const remainingPokemons = pokemonsLength - i;
-            await loadBatch(i, remainingPokemons);
-        } else {
-            await loadBatch(i, batchSize);
-        }
-    }
-
-    // console.log(pokemons);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 async function init() {
     getId('type-card-container').innerHTML = '';
@@ -198,21 +177,15 @@ async function loadSmallCards(i) {
     let pokemon = await response.json();
 
     renderSmallCards(i, pokemon)
-    console.log('fetch:' + pokemon)
+    // console.log('fetch:' + pokemon)
 }
-
 
 function renderSmallCards(i, pokemon) {
     getId('card-container').innerHTML += renderSmallCardsHTML(i, pokemon);
     showColorTypeOne(i, pokemon);
 }
 
-function scrollDown() {
-    window.scrollTo({
-        top: document.body.scrollHeight - 1200,
-        behavior: 'smooth'
-    });
-}
+
 
 
 function showColorTypeOne(i, pokemon) {
@@ -262,7 +235,7 @@ function loadType(clickedType) {
 
 }
 
-function loadMoreTypePokemons(clickedType) {
+async function loadMoreTypePokemons(clickedType) {
     // console.log('clicked' + clickedType);
     getId('more-type-btn').setAttribute('disabled', 'false');
     getId('more-type-btn').style.cursor = 'pointer';
@@ -270,7 +243,22 @@ function loadMoreTypePokemons(clickedType) {
     getId('more-type-btn').style.display = 'inline';
 
     for (let i = currentTypeIndex; i < pokemonsLength; i++) {
-        let pokemon = pokemons[i];
+
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        let response = await fetch(url);
+
+        if (!response.ok) {
+            console.error('Fehler beim Laden von Daten für Pokemon:', url);
+            return;
+        }
+        let pokemon = await response.json();
+
+
+
+        // let pokemon = pokemons[i];
+
+
+
         console.log('array:' + pokemon);
         // console.log(pokemon['types'])
         // if (!pokemon['types']) continue; // Skip if types are not defined
