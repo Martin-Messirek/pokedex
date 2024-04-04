@@ -76,7 +76,7 @@ async function pushMovesToPokemonJSON(pokemon) {
 function loadBigPokemonCard(i, pokemon) {
     console.log(i)
     console.log(pokemon);
-    document.getElementById('big-pokemon-card-background').classList.remove('d-none');
+    document.getElementById('big-pokemon-card-container').classList.remove('d-none');
     document.getElementById('body').classList.add('no-scroll');
 
 
@@ -85,16 +85,57 @@ function loadBigPokemonCard(i, pokemon) {
 }
 
 function renderBigPokemonCard(i, pokemon) {
+    console.log(i)
     document.getElementById('big-pokemon-card-container').innerHTML = renderBigPokemonCardHTML(i, pokemon);
-    document.getElementById('pokemon-name').innerHTML = currentPokemon['name'];
-    document.getElementById('pokemon-image').src = currentPokemon['sprites']['other']['home']['front_default'];
-    // console.log(currentPokemon['sprites']['other']['home']['front_default']);
+    bigShowColorTypeOne(i, pokemon)
+}
+
+function bigShowColorTypeOne(i, pokemon) {
+    let foundFirstType = false; // Initialisierung der Flag-Variable
+    for (let j = 0; j < types.length; j++) {
+        let typeName = types[j];
+        // let color = colors[j];
+        // let colorLight = colorsLight[j];
+
+        if (pokemon['types'] && pokemon['types'].length > 0 && pokemon['types']['0']['type'] && pokemon['types']['0']['type']['name']) {
+
+            if (pokemon['types']['0']['type']['name'] == typeName) {
+                let color = colors[j];
+                let colorLight = colorsLight[j];
+                console.log('Type One Big')
+                document.getElementById(`big-pokemon-card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, black, ${color})`;
+                document.getElementById(`big-card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
+                foundFirstType = true; // Setze die Flag auf true, da der erste Typ gefunden wurde
+                break;
+            }
+        }
+
+
+    }
+    bigShowColorTypeTwo(i, pokemon);
+
+}
+
+function bigShowColorTypeTwo(i, pokemon) {
+    let foundSecondType = false;
+    for (let j = 0; j < types.length; j++) {
+        let typeName = types[j];
+        let colorLight = colorsLight[j];
+        if (pokemon['types'] && pokemon['types'].length > 1 && pokemon['types']['1']['type'] && pokemon['types']['1']['type']['name']) {
+            if (pokemon['types'].length > 1 && pokemon['types']['1']['type']['name'] == typeName) {
+                document.getElementById(`big-card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
+                document.getElementById(`big-card-type-2-${i}`).innerHTML = `${pokemon['types']['1']['type']['name']}`;
+                foundSecondType = true;
+                break;
+            }
+        }
+    }
 }
 
 
 
 function closeLargeDisplay() {
-    document.getElementById('loading-screen').classList.add('d-none');
+    document.getElementById('big-pokemon-card-container').classList.add('d-none');
     document.getElementById('body').classList.remove('no-scroll');
 }
 

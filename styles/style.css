@@ -347,49 +347,85 @@ body {
 
 .big-pokemon-card-background {
   background-color: #11111199;
-  position: absolute;
+  backdrop-filter: blur(2px);
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   z-index: 8;
   display: flex;
-  flex-flow: column;
+  /* flex-flow: column; */
   justify-content: center;
   align-items: center;
 }
 
-.pokedex {
-  min-height: 50vh;
-  background-color: var(--red-1);
+.big-pokemon-card {
+  min-height: 60vh;
+  width:100%;
+  /* background-color: var(--red-1); */
+  border: 1px solid #fff;
+  border-radius: var(--border-radius);
+  /* padding: 24px; */
   color: white;
   margin: 0;
   padding: 0;
-  display: flex;
-  padding: 24px;
-}
-
-.big-pokemon-card-h1 {
   text-transform: capitalize;
-} 
-
-.pokemon-image-container {
-  height: 420px;
+  /* padding: 24px; */
 }
 
-.pokemon-image {
+.image-section {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* .pokemon-image-container {
+  height: 420px;
+} */
+
+/* .pokemon-image {
   height: 420px;
   margin-top: -330px;
+} */
+
+.info-section {
+  background-color: white;
+  border-radius: var(--border-radius);
+  color: #000;
+  /* margin-top: -40px;
+  display: flex;
+  justify-content: center; */
+  height: 400px;
+  width: 100%;
 }
 
-.info-container {
-  background-color: white;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
-  min-height: 100px;
-  margin-top: -40px;
+.big-card-main {
+  position: relative;
+  left: -180px
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+}
+
+/* .big-img-container {
   display: flex;
   justify-content: center;
+
+} */
+
+.big-pokemon-image {
+  width: 250px;
+  /* position: relative;
+  bottom: 16px; */
+  transition: var(--transition);
+}
+
+.big-pokemon-image:hover {
+  transform: scale(1.4);
 }
 
 .no-scroll {
@@ -412,6 +448,17 @@ body {
   font-size: 26px;
   margin: 0;
 }
+
+.big-card-h2 {
+  letter-spacing: var(--letter-spacing);
+  padding-top: 14px;
+  font-size: 40px;
+  margin: 0;
+  
+  
+}
+
+
 .card {
   width: 300px;
   height: 275px;

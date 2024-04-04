@@ -128,6 +128,8 @@
         top: -56px;
         left: 172px;
     }
+
+    
 }
 
 
@@ -169,6 +171,10 @@
     .pokemon-logo {
          z-index: 2;
     }  
+
+    .big-pokemon-card, .info-section {
+        width:576px;
+    }
 }
 
 @media only screen and (min-width: 768px) {  
