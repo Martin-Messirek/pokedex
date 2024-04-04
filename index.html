@@ -19,7 +19,7 @@
 
 <!-- <body onload="loadBatch(), includeHTML()"> -->
 
-<body id="body" onload="renderButtons(), loadSmallCardsBatch(), loadAll()">
+<body id="body" onload="init()">
 
     <div>
 
@@ -104,21 +104,9 @@
 
 
             <!--  Large Display  -->
-
-            <div class="large-display-background" id="large-display-background">
-                <!-- <div class="large-display-background d-none" id="large-display-background"> -->
-                <div class="pokedex" id="pokedex">
-                    <h1 id="pokemon-name" class="large-display-h1">Name</h1>
-                </div>
-                <div class="info-container">
-                    <div class="pokemon-image-container">
-                        <img id="pokemon-image" class="pokemon-image" src="" alt="">
-                    </div>
-
-                </div>
+            <div id="big-pokemon-card-container" class="big-pokemon-card-container d-none"></div>
 
 
-            </div>
 
 
             <footer>

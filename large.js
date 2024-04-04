@@ -61,18 +61,31 @@ async function pushMovesToPokemonJSON(pokemon) {
     // console.log(array)
 }
 
-async function loadLargeDisplay(i, pokemon) {
-    document.getElementById('large-display-background').classList.remove('d-none');
+// document.getElementById('card-container').addEventListener('click', function (event) {
+//     console.log('clicked')
+//     if (event.target.classList.contains('card')) {
+//         console.log('Card clicked');
+//         // Here you can access the clicked card's ID and dataset
+//         const cardId = event.target.id;
+//         const cardPokemon = event.target.dataset.pokemon;
+//         loadBigPokemonCard(cardId, cardPokemon);
+//     }
+// });
+
+
+function loadBigPokemonCard(i, pokemon) {
+    console.log(i)
+    console.log(pokemon);
+    document.getElementById('big-pokemon-card-background').classList.remove('d-none');
     document.getElementById('body').classList.add('no-scroll');
 
-    let url = 'https://pokeapi.co/api/v2/pokemon/ditto';
-    let response = await fetch(url);
-    currentPokemon = await response.json();
+
     // console.log(currentPokemon);
-    renderPokemonInfo(i, pokemon);
+    renderBigPokemonCard(i, pokemon);
 }
 
-function renderPokemonInfo() {
+function renderBigPokemonCard(i, pokemon) {
+    document.getElementById('big-pokemon-card-container').innerHTML = renderBigPokemonCardHTML(i, pokemon);
     document.getElementById('pokemon-name').innerHTML = currentPokemon['name'];
     document.getElementById('pokemon-image').src = currentPokemon['sprites']['other']['home']['front_default'];
     // console.log(currentPokemon['sprites']['other']['home']['front_default']);
@@ -83,4 +96,8 @@ function renderPokemonInfo() {
 function closeLargeDisplay() {
     document.getElementById('loading-screen').classList.add('d-none');
     document.getElementById('body').classList.remove('no-scroll');
+}
+
+function doNotClose(event) {
+    event.stopPropagation();
 }

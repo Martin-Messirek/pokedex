@@ -285,8 +285,8 @@ body {
 /* Loading Screen */
 
 .loading-screen {
-  background-color: #11111199;
-  backdrop-filter: blur(4px);
+  /* background-color: #11111199;
+  backdrop-filter: blur(4px); */
   position: absolute;
   top: 0;
   bottom: 0;
@@ -297,7 +297,17 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+}
 
+.background-color {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 8;
+  background-color: #11111199;
+  backdrop-filter: blur(4px);
 }
 
 .loading-screen-container {
@@ -333,9 +343,9 @@ body {
   margin: 0 auto;
 }
 
-/* Large Display */
+/* Big Pokemon Card */
 
-.large-display-background {
+.big-pokemon-card-background {
   background-color: #11111199;
   position: absolute;
   top: 0;
@@ -359,7 +369,7 @@ body {
   padding: 24px;
 }
 
-.large-display-h1 {
+.big-pokemon-card-h1 {
   text-transform: capitalize;
 } 
 

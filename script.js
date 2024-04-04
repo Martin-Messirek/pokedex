@@ -30,9 +30,16 @@ const moreTypeBtn = document.getElementById('more-type-btn');
 
 // Load Initial Page - Display Small Pokemon Cards 
 
-async function loadSmallCardsBatch() {
+async function init() {
     showLoadingScreen();
-    console.log(currentIndex)
+    renderButtons();
+    await loadSmallCardsBatch();
+    loadAll();
+    hideLoadingScreen();
+}
+
+async function loadSmallCardsBatch() {
+    // console.log(currentIndex)
     document.getElementById('type-card-container').innerHTML = '';
     for (let i = currentIndex; i < currentIndex + 50 && i <= pokemonsLength; i++) {
         await loadSmallCards(i);
@@ -81,7 +88,7 @@ function showColorTypeOne(i, pokemon) {
         }
     }
     showColorTypeTwo(i, pokemon);
-    hideLoadingScreen();
+
 }
 
 function showColorTypeTwo(i, pokemon) {
@@ -104,14 +111,25 @@ function showColorTypeTwo(i, pokemon) {
 // Loading Screen
 
 function showLoadingScreen() {
-    document.getElementById('loading-screen').classList.remove('d-none');
+    document.getElementById('loading-screen').classList.add('background-color');
+    // scrollUp();
     document.getElementById('body').classList.add('no-scroll');
+    document.getElementById('loading-screen').classList.remove('d-none');
+
+}
+
+function scrollUp() {
+    window.scrollTo({
+        top: 0
+    });
 }
 
 function hideLoadingScreen() {
     document.getElementById('loading-screen').classList.add('d-none');
     document.getElementById('body').classList.remove('no-scroll');
+    document.getElementById('loading-screen').classList.remove('background-color');
 }
+
 // Scroll to Top and Bottom of Page
 
 window.onscroll = function () {
