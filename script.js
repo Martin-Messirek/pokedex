@@ -31,6 +31,8 @@ const moreTypeBtn = document.getElementById('more-type-btn');
 // Load Initial Page - Display Small Pokemon Cards 
 
 async function loadSmallCardsBatch() {
+    showLoadingScreen();
+    console.log(currentIndex)
     document.getElementById('type-card-container').innerHTML = '';
     for (let i = currentIndex; i < currentIndex + 50 && i <= pokemonsLength; i++) {
         await loadSmallCards(i);
@@ -47,6 +49,7 @@ async function loadSmallCardsBatch() {
 
 async function loadSmallCards(i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    // console.log(url)
     let response = await fetch(url);
 
     if (!response.ok) {
@@ -78,6 +81,7 @@ function showColorTypeOne(i, pokemon) {
         }
     }
     showColorTypeTwo(i, pokemon);
+    hideLoadingScreen();
 }
 
 function showColorTypeTwo(i, pokemon) {
@@ -94,6 +98,19 @@ function showColorTypeTwo(i, pokemon) {
             break;
         }
     }
+}
+
+
+// Loading Screen
+
+function showLoadingScreen() {
+    document.getElementById('loading-screen').classList.remove('d-none');
+    document.getElementById('body').classList.add('no-scroll');
+}
+
+function hideLoadingScreen() {
+    document.getElementById('loading-screen').classList.add('d-none');
+    document.getElementById('body').classList.remove('no-scroll');
 }
 // Scroll to Top and Bottom of Page
 
@@ -159,6 +176,3 @@ function clearSuggestions() {
 function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
-
-// Load the Pokemon JSON in Batches and them push into an Array
-

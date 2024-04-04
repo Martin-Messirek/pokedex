@@ -21,7 +21,7 @@ function renderSmallCardsHTML(i, pokemon) {
                 <img id="small-pokemon-image" class="small-pokemon-image" src="${pokemon['sprites']['other']['home']['front_default']}" alt="">
             </div>
         </div>
-        <div class="id-number">#${pokemonJSON['id'][i]}</div>
+        <div class="id-number">#${pokemon['id']}</div>
     </div>
     `;
 }

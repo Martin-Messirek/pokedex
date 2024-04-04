@@ -19,7 +19,7 @@
 
 <!-- <body onload="loadBatch(), includeHTML()"> -->
 
-<body onload="renderButtons(), loadSmallCardsBatch(), loadAll()">
+<body id="body" onload="renderButtons(), loadSmallCardsBatch(), loadAll()">
 
     <div>
 
@@ -31,7 +31,12 @@
             <img class="pokemon-img" src="./img/pokemon-1673770_1920.png" alt="">
             <img class="pokemon-img" src="./img/pokemon.png" alt=""> -->
 
-
+            <div id="loading-screen" class="loading-screen d-none">
+                <div class="loading-screen-container">
+                    <img src="./img/pokemon-1536849_1920.png" id="loading-screen-img" class="loading-screen-img" alt="">
+                    <h1 class="loading-screen-h1">Loading...</h1>
+                </div>
+            </div>
             <header>
                 <div class="header">
                     <h1 class="header-h1">Pokedex</h1>
@@ -99,16 +104,22 @@
 
 
             <!--  Large Display  -->
-            <div class="pokedex d-none" id="pokedex">
-                <h1 id="pokemon-name" class="large-display-h1">Name</h1>
+
+            <div class="large-display-background" id="large-display-background">
+                <!-- <div class="large-display-background d-none" id="large-display-background"> -->
+                <div class="pokedex" id="pokedex">
+                    <h1 id="pokemon-name" class="large-display-h1">Name</h1>
+                </div>
+                <div class="info-container">
+                    <div class="pokemon-image-container">
+                        <img id="pokemon-image" class="pokemon-image" src="" alt="">
+                    </div>
+
+                </div>
+
 
             </div>
 
-
-            <div class="info-container d-none">
-                <div class="pokemon-image-container"><img id="pokemon-image" class="pokemon-image" src="" alt=""></div>
-
-            </div>
 
             <footer>
                 <div class="footer">

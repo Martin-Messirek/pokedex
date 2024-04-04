@@ -1,10 +1,17 @@
+// Load the Pokemon JSON in Batches and them push into an Array
+
 let pokemonJSON =
 {
     'name': [],
     'types': [],
     'id': [],
-    'img': []
+    'img': [],
+    'about': [],
+    'stats': [],
+    'moves': []
 }
+
+
 
 async function loadAll() {
     const batchSize = 50;
@@ -47,6 +54,9 @@ async function pushToPokemonJSON(pokemon) {
     pokemonJSON.img.push(addImg);
     pokemonJSON.types.push(addTypes);
     pokemonJSON.id.push(addId);
+    await pushAboutToPokemonJSON(pokemon);
+    await pushStatsToPokemonJSON(pokemon);
+    await pushMovesToPokemonJSON(pokemon);
 }
 
 // Load Small Cards - Display Pokemon by Type
