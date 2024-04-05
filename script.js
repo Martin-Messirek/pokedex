@@ -4,11 +4,11 @@ const colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-
 
 const colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--psychic-3)', 'var(--ice-3)', 'var(--dragon-3)', 'var(--flying-3)', 'var(--ghost-3)', 'var(--dark-3)', 'var(--steel-3)'];
 
-let pokemons = [];
+// let pokemons = [];
 let currentIndex = 1;
 let currentTypeIndex = 1;
 let count = 0;
-let pokemonsLength = 1001;
+let pokemonsLength = 1000;
 const offsetX = '400px';
 const chevronUp = document.getElementById('chevron-up');
 const suggestionsList = document.getElementById('suggestions');
@@ -41,10 +41,10 @@ async function init() {
 async function loadSmallCardsBatch() {
     // console.log(currentIndex)
     document.getElementById('type-card-container').innerHTML = '';
-    for (let i = currentIndex; i < currentIndex + 50 && i <= pokemonsLength; i++) {
+    for (let i = currentIndex; i < currentIndex + 25 && i <= pokemonsLength; i++) {
         await loadSmallCards(i);
     }
-    currentIndex += 50;
+    currentIndex += 25;
 
     if (currentIndex >= pokemonsLength) {
         cardBtn.setAttribute('disabled', true);
@@ -152,9 +152,9 @@ function scrollDown() {
 input.addEventListener('input', function () {
     let searchInput = this.value.toLowerCase();
     let matches = [];
-    for (let i = 0; i < pokemons.length; i++) {
-        if (pokemons[i]['species']['name'].startsWith(searchInput)) {
-            matches.push(capitalize(pokemons[i]['species']['name']));
+    for (let i = 0; i < pokemonsLength; i++) {
+        if (pokemonJSON['name'][i] && pokemonJSON['name'][i].startsWith(searchInput)) {
+            matches.push(capitalize(pokemonJSON['name'][i]));
         }
         if (matches.length === 8) {
             break;

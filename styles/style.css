@@ -379,9 +379,15 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: center;
+  
 }
 
-
+.x-mark-big-card {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 16px 0 0;
+}
 
 /* .pokemon-image-container {
   height: 420px;
@@ -404,11 +410,12 @@ body {
 }
 
 .big-card-main {
-  position: relative;
-  left: -180px
-  /* display: flex;
+  /* position: relative;
+  left: -180px; */
+  display: flex;
   justify-content: space-around;
-  align-items: center; */
+  align-items: center;
+  gap: 8px;
 }
 
 /* .big-img-container {
@@ -418,7 +425,7 @@ body {
 } */
 
 .big-pokemon-image {
-  width: 250px;
+  width: 150px;
   /* position: relative;
   bottom: 16px; */
   transition: var(--transition);
@@ -431,6 +438,23 @@ body {
 .no-scroll {
   overflow-y: hidden;
 }
+
+.big-card-h2 {
+  letter-spacing: var(--letter-spacing);
+  font-size: 40px;
+  margin: 0;
+  padding-bottom: 32px;
+}
+
+.big-id-number {
+  /* position: absolute;
+  bottom: 28px;
+  left: 48px; */
+  letter-spacing: var(--letter-spacing);
+  font-weight: 500;
+  padding-top: 24px;
+}
+
 
 /* Small Cards */
 
@@ -449,14 +473,7 @@ body {
   margin: 0;
 }
 
-.big-card-h2 {
-  letter-spacing: var(--letter-spacing);
-  padding-top: 14px;
-  font-size: 40px;
-  margin: 0;
-  
-  
-}
+
 
 
 .card {
@@ -516,6 +533,8 @@ body {
   font-weight: 500;
 }
 
+
+
 /* Shades of Colours: https://noeldelgado.github.io/shadowlord/#6a31fc */
 
 /* Scrollbar */
@@ -542,6 +561,11 @@ body {
 }    
 
 /* General */
+
+.large-icon {
+  width: 30px;
+  height: 30px;
+}
 
 .medium-icon {
   width: 24px;

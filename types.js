@@ -1,5 +1,5 @@
 // Load the Pokemon JSON in Batches and them push into an Array
-
+let allPokemonsLoaded = false;
 let pokemonJSON =
 {
     'name': [],
@@ -14,15 +14,19 @@ let pokemonJSON =
 
 
 async function loadAll() {
-    const batchSize = 50;
-    for (let i = 1; i <= pokemonsLength; i += batchSize) {
-        if (i + batchSize > pokemonsLength) {
-            // Falls das nächste Batch über die maximale Anzahl hinausgehen würde, berechne die tatsächliche Restmenge
-            const remainingPokemons = pokemonsLength - i;
-            await loadBatch(i, remainingPokemons);
-        } else {
-            await loadBatch(i, batchSize);
+    try {
+        const batchSize = 50;
+        for (let i = 1; i <= pokemonsLength; i += batchSize) {
+            if (i + batchSize > pokemonsLength) {
+                const remainingPokemons = pokemonsLength - i;
+                await loadBatch(i, remainingPokemons);
+            } else {
+                await loadBatch(i, batchSize);
+            }
         }
+        allPokemonsLoaded = true; // Markiere den Ladevorgang als abgeschlossen
+    } catch (error) {
+        console.error('Ein Fehler ist aufgetreten:', error);
     }
 }
 
@@ -71,6 +75,15 @@ function renderButtons() {
 }
 
 function loadType(clickedType) {
+    showLoadingScreen();
+    if (!allPokemonsLoaded) {
+        // Wenn die Pokemons noch nicht vollständig geladen sind, warte auf deren Abschluss
+        setTimeout(() => {
+            loadType(clickedType); // Wiederholen Sie den Aufruf, wenn die Pokemons noch nicht geladen sind
+        }, 600); // Warten Sie für 1 Sekunde und überprüfen erneut
+        return;
+    }
+    hideLoadingScreen();
     currentIndex = 1;  // it is set to 51 onload
     document.getElementById('card-container').innerHTML = '';
     document.getElementById('type-card-container').innerHTML = '';

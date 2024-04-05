@@ -32,21 +32,20 @@ function renderSmallCardsSameTypeHTML(i, pokemon) {
     return /*html*/ `
     <div onclick="loadBigPokemonCard('${i}', '${pokemon}')" class="card" id="card${i}">
         <h2 class="card-h2">
-            ${pokemonJSON['name'][i]}
+            ${pokemonJSON['name'][i - 1]}
         </h2>
         <div class="small-card-main">
             <div>
                 <div id="card-type-1-${i}" class="card-type">
-                    ${pokemonJSON['types'][i]['0']['type']['name']}
+                    ${pokemonJSON['types'][i - 1]['0']['type']['name']}
                 </div>
-                <div id="card-type-2-${i}" class="card-type">
-                </div>
+                <div id="card-type-2-${i}" class="card-type"></div>
             </div>
             <div class="small-img-container">
-                <img id="small-pokemon-image" class="small-pokemon-image" src="${pokemonJSON['img'][i]}" alt="">
+                <img id="small-pokemon-image" class="small-pokemon-image" src="${pokemonJSON['img'][i - 1]}" alt="">
             </div>
         </div>
-        <div class="id-number">#${pokemonJSON['id'][i]}</div>
+        <div class="id-number">#${pokemonJSON['id'][i - 1]}</div>
     </div>
     `;
 }
@@ -56,7 +55,10 @@ function renderBigPokemonCardHTML(i, pokemon) {
     <div onclick="closeLargeDisplay()" class="big-pokemon-card-background" id="big-pokemon-card-background">
         <div onclick="doNotClose(event)" class="big-pokemon-card" id="big-pokemon-card${i}">
             <section class="image-section" id="image-section">
-                <h2 class="big-card-h2">
+                <div class=x-mark-big-card>
+                    <img onclick="closeLargeDisplay()" class="cursor large-icon" src="./icons/circle-xmark-regular.svg" alt="X-Mark">
+                </div>
+                    <h2 class="big-card-h2">
                      ${pokemonJSON['name'][i - 1]}
                 </h2>
                 <div class="big-card-main">
@@ -64,14 +66,15 @@ function renderBigPokemonCardHTML(i, pokemon) {
                         <div id="big-card-type-1-${i}" class="card-type">
                              ${pokemonJSON['types'][i - 1]['0']['type']['name']}
                         </div>
-                        <div id="big-card-type-2-${i}" class="card-type">
-                        </div>
+                        <div id="big-card-type-2-${i}" class="card-type"></div>
+                        <div class="big-id-number">#${pokemonJSON['id'][i - 1]}</div>
                     </div>
-                </div>
-                <div class="big-img-container">
+                    <div class="big-img-container">
                         <img id="big-pokemon-image" class="big-pokemon-image" src="${pokemonJSON['img'][i - 1]}" alt="">
                     </div>
-                <div class="id-number">#${pokemonJSON['id'][i - 1]}</div>
+                </div>
+                
+                
             </section>
             <section class="info-section" id="info-section">
                 <nav class="info-section-nav" id="info-section-nav">
