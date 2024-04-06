@@ -43,6 +43,7 @@ async function loadBatch(startIndex, batchSize) {
         const responses = await Promise.all(promises);
 
         for (const pokemon of responses) { // Iterieren Sie über die Pokemon-Daten, nicht über die Response-Objekte
+            // console.log(pokemon)
             pushToPokemonJSON(pokemon);
         }
     } catch (error) {

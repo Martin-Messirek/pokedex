@@ -49,28 +49,64 @@ async function pushStatsToPokemonJSON(pokemon) {
     pokemonJSON.stats.push(array);
 }
 
-async function pushMovesToPokemonJSON(pokemon) {
-    let powerfulMoves = [];
-    let otherMoves = [];
+let powerfulMoves = {};
+let otherMoves = {};
 
+async function pushMovesToPokemonJSON(pokemon) {
+    // Iterieren Sie durch alle pokemon['moves']
     for (let i = 0; i < pokemon['moves'].length; i++) {
+        // Extrahieren Sie den Move-Namen
         const move = await pokemon['moves'][i]['move']['name'];
 
+        // Wenn der Move zu den wichtigen und mächtigen Moves gehört
         if (powerfulAndImportantMoves.includes(move)) {
-            powerfulMoves.push(move);
-            console.log(powerfulMoves)
-            console.log(i)
-
+            // Überprüfen Sie, ob das Pokémon bereits in powerfulMoves existiert
+            if (!powerfulMoves[i]) {
+                powerfulMoves[i] = []; // Wenn nicht, initialisieren Sie es als leeres Array
+            }
+            powerfulMoves[i].push(move); // Fügen Sie den Move zu powerfulMoves hinzu
         } else {
-            otherMoves.push(move);
-
+            // Wenn der Move zu den anderen Moves gehört
+            if (!otherMoves[i]) {
+                otherMoves[i] = []; // Überprüfen Sie, ob das Pokémon bereits in otherMoves existiert
+            }
+            otherMoves[i].push(move); // Fügen Sie den Move zu otherMoves hinzu
         }
     }
-
-    console.log(pokemon['moves'])
-    pokemonJSON.moves.push(powerfulMoves);
-    pokemonJSON['other moves'].push(otherMoves);
 }
+
+
+// async function pushMovesToPokemonJSON(pokemon) {
+//     // console.log(pokemon) // Correct!
+//     let powerfulMoves = [];
+//     let otherMoves = [];
+
+//     for (let i = 0; i < pokemon['moves'].length; i++) {
+//         // console.log(pokemon['moves'].length)
+//         const move = await pokemon['moves'][i]['move']['name'];
+
+//         if (powerfulAndImportantMoves.includes(move)) {
+//             powerfulMoves.push(move);
+//             // console.log(powerfulMoves)
+//             // console.log(i)
+
+//         } else {
+//             otherMoves.push(move);
+//             // console.log(otherMoves)
+
+//         }
+//     }
+
+//     // console.log(pokemon['moves'])
+//     // pokemonJSON.moves.push(powerfulMoves);
+//     // pokemonJSON['other moves'].push(otherMoves);
+//     // Füge jeden Move einzeln zu pokemonJSON.moves hinzu
+//     powerfulMoves.forEach(move => pokemonJSON.moves.push(move));
+
+//     // Füge jeden Move einzeln zu pokemonJSON['other moves'] hinzu
+//     otherMoves.forEach(move => pokemonJSON['other moves'].push(move));
+//     console.log(pokemonJSON)
+// }
 
 
 // document.getElementById('card-container').addEventListener('click', function (event) {
@@ -145,7 +181,7 @@ function bigShowColorTypeOne(i) {
 
         // if (pokemonJSON['types'] && pokemonJSON['types'].length > 0 && pokemonJSON['types']['0']['type'] && pokemonJSON['types']['0']['type']['name']) {
 
-        if (pokemonJSON['types'][i]['0']['type']['name'] == typeName) {
+        if (pokemonJSON['types'][i - 1]['0']['type']['name'] == typeName) {
             let color = colors[j];
             let colorLight = colorsLight[j];
             // console.log('Type One Big')
@@ -160,6 +196,7 @@ function bigShowColorTypeOne(i) {
     }
     bigShowColorTypeTwo(i);
     renderMovesHTML(i);
+    renderOtherMovesHTML(i)
     // if (i === 1) {
     //     console.log(i + ' === 1')
     //     let element = document.getElementById(`chevron-left-${i}`);
@@ -179,16 +216,16 @@ function bigShowColorTypeOne(i) {
 }
 
 function bigShowColorTypeTwo(i) {
-    if (pokemonJSON['types'][i].length > 1) {
+    if (pokemonJSON['types'][i - 1].length > 1) {
         for (let j = 0; j < types.length; j++) {
             let typeName = types[j];
             let colorLight = colorsLight[j];
             if (
                 // pokemonJSON['types'] && pokemonJSON['types'].length > 1 && pokemonJSON['types']['1']['type'] && pokemonJSON['types']['1']['type']['name']) {
                 //  && 
-                pokemonJSON['types'][i]['1']['type']['name'] == typeName) {
+                pokemonJSON['types'][i - 1]['1']['type']['name'] == typeName) {
                 document.getElementById(`big-card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
-                document.getElementById(`big-card-type-2-${i}`).innerHTML = `${pokemonJSON['types'][i]['1']['type']['name']}`;
+                document.getElementById(`big-card-type-2-${i}`).innerHTML = `${pokemonJSON['types'][i - 1]['1']['type']['name']}`;
                 // foundSecondType = true;
                 return;
             }
@@ -201,33 +238,57 @@ function bigShowColorTypeTwo(i) {
 
 
 
+// function renderMovesHTML(i) {
+
+//     let movesHTML = '';
+//     const moves = pokemonJSON['moves'][i - 1];
+//     // console.log(moves);
+
+//     if (moves.length > 0) {
+//         for (let j = 0; j < moves.length; j++) {
+//             movesHTML += '<li>' + moves[j] + '</li>';
+//         }
+//     }
+
+//     return movesHTML;
+// }
+
+// function renderOtherMovesHTML(i) {
+
+//     let movesHTML = '';
+//     const otherMoves = pokemonJSON['other moves'][i - 1];
+//     // console.log(otherMoves);
+//     if (otherMoves.length > 0) {
+//         for (let j = 0; j < otherMoves.length; j++) {
+//             movesHTML += '<li>' + otherMoves[j] + '</li>';
+//         }
+//     }
+
+//     return movesHTML;
+// }
+
 function renderMovesHTML(i) {
-
     let movesHTML = '';
-    const moves = pokemonJSON['moves'][i - 1];
-
-    if (moves.length > 0) {
+    const moves = powerfulMoves[i]; // Lesen Sie die mächtigen Moves für das Pokémon mit Index i
+    if (moves && moves.length > 0) {
         for (let j = 0; j < moves.length; j++) {
             movesHTML += '<li>' + moves[j] + '</li>';
         }
     }
-
     return movesHTML;
 }
 
 function renderOtherMovesHTML(i) {
-
     let movesHTML = '';
-    const otherMoves = pokemonJSON['other moves'][i - 1];
-
-    if (otherMoves.length > 0) {
-        for (let j = 0; j < otherMoves.length; j++) {
-            movesHTML += '<li>' + otherMoves[j] + '</li>';
+    const otherMovesList = otherMoves[i]; // Lesen Sie die anderen Moves für das Pokémon mit Index i
+    if (otherMovesList && otherMovesList.length > 0) {
+        for (let j = 0; j < otherMovesList.length; j++) {
+            movesHTML += '<li>' + otherMovesList[j] + '</li>';
         }
     }
-
     return movesHTML;
 }
+
 
 function arrowLeft(i) {
     // console.log('left ' + i)
