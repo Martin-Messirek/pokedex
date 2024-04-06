@@ -1,10 +1,11 @@
 // Load Large View of Pokemon Card
 
 let currentPokemon;
-const powerfulAndImportantMoves = ["hyper-beam", "blast-burn", "hydro-cannon", "frenzy-plant", "zap-cannon", "ice-burn",
-    "focus-punch", "gunk-shot", "earthquake", "sky-attack", "psystrike", "megahorn", "rock-wrecker", "shadow-force",
-    "draco-meteor", "hyperspace-fury", "doom-desire", "light-of-ruin", "tackle", "growl", "tail-whip", "water-gun",
-    "bubble", "ember", "peck", "thunder-shock", "quick-attack", "gust", "confusion", "poison-sting", "bite", "vine-whip",
+const powerfulAndImportantMoves = ["hyper-beam", "blast-burn", "hydro-cannon", "frenzy-plant",
+    "zap-cannon", "ice-burn", "focus-punch", "gunk-shot", "earthquake", "sky-attack", "psystrike",
+    "megahorn", "rock-wrecker", "shadow-force", "draco-meteor", "hyperspace-fury", "doom-desire",
+    "light-of-ruin", "tackle", "growl", "tail-whip", "water-gun", "bubble", "ember", "peck",
+    "thunder-shock", "quick-attack", "gust", "confusion", "poison-sting", "bite", "vine-whip",
     "psychic", "hyper-fang", "screech", "flamethrower"];
 
 async function pushAboutToPokemonJSON(pokemon) {
@@ -49,17 +50,28 @@ async function pushStatsToPokemonJSON(pokemon) {
 }
 
 async function pushMovesToPokemonJSON(pokemon) {
-    let array = [];
+    let powerfulMoves = [];
+    let otherMoves = [];
+
     for (let i = 0; i < pokemon['moves'].length; i++) {
         const move = await pokemon['moves'][i]['move']['name'];
-        // console.log(move)
+
         if (powerfulAndImportantMoves.includes(move)) {
-            array.push(move);
+            powerfulMoves.push(move);
+            console.log(powerfulMoves)
+            console.log(i)
+
+        } else {
+            otherMoves.push(move);
+
         }
     }
-    pokemonJSON.moves.push(array)
-    // console.log(array)
+
+    console.log(pokemon['moves'])
+    pokemonJSON.moves.push(powerfulMoves);
+    pokemonJSON['other moves'].push(otherMoves);
 }
+
 
 // document.getElementById('card-container').addEventListener('click', function (event) {
 //     console.log('clicked')
@@ -72,35 +84,54 @@ async function pushMovesToPokemonJSON(pokemon) {
 //     }
 // });
 
+// Hilfsfunktion, die das Laden des Bildes asynchron erwartet
 
-function loadBigPokemonCard(i, pokemon) {
-    console.log(i)
+
+
+
+
+
+
+
+
+
+
+
+
+
+function loadBigPokemonCard(i) {
+    // if (i === 1) {
+    //     console.log('Alert!! i is 1 ------ i === ' + i);
+    //     let element = document.getElementById(`chevron-left-${i}`);
+    //     if (element) {
+    //         element.classList.add('d-none');
+    //     } else {
+    //         // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
+    //         setTimeout(() => {
+    //             let retryElement = document.getElementById(`chevron-left-${i}`);
+    //             if (retryElement) {
+    //                 retryElement.classList.add('d-none');
+    //             }
+    //         }, 500); // Warte für 0,5 Sekunden und überprüfe erneut
+    //     }
+    // }
+
+
+    // console.log(i);
     // console.log(pokemon);
     document.getElementById('big-pokemon-card-container').classList.remove('d-none');
     document.getElementById('body').classList.add('no-scroll');
-
-
     // console.log(currentPokemon);
     renderBigPokemonCard(i);
+
+
+
 }
 
 function renderBigPokemonCard(i) {
-    console.log(i)
+    // console.log(i)
     document.getElementById('big-pokemon-card-container').innerHTML = renderBigPokemonCardHTML(i);
-    if (i === 1) {
-        let element = document.getElementById(`chevron-left-${i}`);
-        if (element) {
-            element.classList.add('d-none');
-        } else {
-            // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
-            setTimeout(() => {
-                let retryElement = document.getElementById(`chevron-left-${i}`);
-                if (retryElement) {
-                    retryElement.classList.add('d-none');
-                }
-            }, 500); // Warte für 1 Sekunde und überprüfe erneut
-        }
-    }
+
     bigShowColorTypeOne(i)
 }
 
@@ -128,7 +159,22 @@ function bigShowColorTypeOne(i) {
 
     }
     bigShowColorTypeTwo(i);
-    renderMovesHTML(i)
+    renderMovesHTML(i);
+    // if (i === 1) {
+    //     console.log(i + ' === 1')
+    //     let element = document.getElementById(`chevron-left-${i}`);
+    //     if (element) {
+    //         element.classList.add('d-none');
+    //     } else {
+    //         // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
+    //         setTimeout(() => {
+    //             let retryElement = document.getElementById(`chevron-left-${i}`);
+    //             if (retryElement) {
+    //                 retryElement.classList.add('d-none');
+    //             }
+    //         }, 50); // Warte für 1 Sekunde und überprüfe erneut
+    //     }
+    // }
 
 }
 
@@ -169,27 +215,47 @@ function renderMovesHTML(i) {
     return movesHTML;
 }
 
-function arrowLeft(i) {
-    console.log('left ' + i)
-    if (i > 1) {
-        i--;
-        // if (i === 1) {
-        //     console.log(i + ' === 1')
-        // let element = document.getElementById(`chevron-left-${i}`);
-        // if (element) {
-        //     element.classList.add('d-none');
-        // } else {
-        //     // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
-        //     setTimeout(() => {
-        //         let retryElement = document.getElementById(`chevron-left-${i}`);
-        //         if (retryElement) {
-        //             retryElement.classList.add('d-none');
-        //         }
-        //     }, 500); // Warte für 1 Sekunde und überprüfe erneut
-        // }
+function renderOtherMovesHTML(i) {
+
+    let movesHTML = '';
+    const otherMoves = pokemonJSON['other moves'][i - 1];
+
+    if (otherMoves.length > 0) {
+        for (let j = 0; j < otherMoves.length; j++) {
+            movesHTML += '<li>' + otherMoves[j] + '</li>';
+        }
     }
 
-    console.log('left inside i--' + i)
+    return movesHTML;
+}
+
+function arrowLeft(i) {
+    // console.log('left ' + i)
+    if (i > 1) {
+        i--;
+    } else if (i === 1) {
+        i = currentIndex - 1;
+        // console.log('current Index: ' + currentIndex)
+    }
+
+
+    // console.log(i + ' === 1')
+    // let element = document.getElementById(`chevron-left-${i}`);
+    // if (element) {
+    //     element.classList.add('d-none');
+    // } else {
+    //     // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
+    //     setTimeout(() => {
+    //         let retryElement = document.getElementById(`chevron-left-${i}`);
+    //         if (retryElement) {
+    //             retryElement.classList.add('d-none');
+    //         }
+    //     }, 50); // Warte für 1 Sekunde und überprüfe erneut
+    //  }
+    // }
+
+
+    // console.log('left inside i--' + i)
     // } else {
     //     console.log('d-none left ' + i)
     //     // document.getElementById(`chevron-left-${i}`).classList.add('d-none');
@@ -198,12 +264,13 @@ function arrowLeft(i) {
 }
 
 function arrowRight(i) {
-    console.log('right ' + i)
-    if (i < pokemonsLength) {
+    // console.log('right ' + i)
+    if (i < currentIndex - 1) {
         i++;
-        console.log('right inside i++' + i)
-    } else {
-        document.getElementById(`chevron-right-${i}`).classList.add('d-none');
+        // console.log('right inside i++' + i)
+    } else if (i === currentIndex - 1) {
+        i = 1;
+        // document.getElementById(`chevron-right-${i}`).classList.add('d-none');
 
     }
     renderBigPokemonCard(i);
@@ -262,7 +329,7 @@ function arrowRight(i) {
 
 
 function selectInfoSection(selected) {
-    console.log(selected)
+    // console.log(selected)
     document.getElementById(`${selected}-h2`).classList.add('border-side-and-top');
     document.getElementById(`${selected}-h2`).classList.remove('border-bottom');
     document.getElementById(selected).classList.remove('d-none');
@@ -270,16 +337,52 @@ function selectInfoSection(selected) {
     for (let i = 0; i < options.length; i++) {
         const optionsH2 = `${options[i]}-h2`;
         const optionsContent = options[i];
-        console.log(optionsH2)
+        // console.log(optionsH2)
         if (optionsContent !== selected) {
             document.getElementById(optionsH2).classList.remove('border-side-and-top');
             document.getElementById(optionsH2).classList.add('border-bottom');
             document.getElementById(optionsContent).classList.add('d-none');
+            document.getElementById(optionsH2).style.color = 'var(--zinc-333)';
+            const element = document.getElementById(optionsH2);
+            element.addEventListener('mouseenter', function () {
+                if (optionsContent !== selected) {
+                    this.style.color = '#fff';
+                }
+            });
+            element.addEventListener('mouseleave', function () {
+                if (optionsContent !== selected) {
+                    this.style.color = 'var(--zinc-333)';
+                }
+            });
+
         }
-
+        if (optionsContent == selected) {
+            document.getElementById(optionsH2).style.color = 'var(--zinc-767)';
+            const element = document.getElementById(optionsH2);
+            element.addEventListener('mouseenter', function () {
+                if (optionsContent == selected) {
+                    this.style.color = 'var(--zinc-767)';
+                }
+            });
+            element.addEventListener('mouseleave', function () {
+                if (optionsContent == selected) {
+                    this.style.color = 'var(--zinc-767)';
+                }
+            });
+        }
+        if (selected == 'about') {
+            document.getElementById('outer-info-section-main').style.borderTopLeftRadius = '0';
+            document.getElementById('outer-info-section-main').style.borderTopRightRadius = 'var(--border-radius)';
+        }
+        if (selected == 'moves') {
+            document.getElementById('outer-info-section-main').style.borderTopRightRadius = '0';
+            document.getElementById('outer-info-section-main').style.borderTopLeftRadius = 'var(--border-radius)';
+        }
+        if (selected == 'stats') {
+            document.getElementById('outer-info-section-main').style.borderTopRightRadius = 'var(--border-radius)';
+            document.getElementById('outer-info-section-main').style.borderTopLeftRadius = 'var(--border-radius)';
+        }
     }
-
-
 }
 
 

@@ -61,14 +61,7 @@ function renderBigPokemonCardHTML(i) {
                 <h2 class="big-card-h2">
                     ${pokemonJSON['name'][i - 1]}
                 </h2>
-                <div class="big-card-chevrons">
-                    <div>
-                        <img onclick="arrowLeft(${i})" id="chevron-left-${i}" class="big-card-chevron-left"src="./icons/chevron-left-solid.svg" alt="">
-                    </div>
-                    <div>
-                        <img onclick="arrowRight(${i})" id="chevron-right-${i}" class="big-card-chevron-right"src="./icons/chevron-right-solid.svg" alt="">
-                    </div>
-                </div>
+                
                 <div class="big-card-main">
                     <div>
                         <div id="big-card-type-1-${i}" class="card-type">
@@ -82,7 +75,14 @@ function renderBigPokemonCardHTML(i) {
                     </div>
                 </div>
                 
-                
+            <div class="big-card-chevrons">
+                    <div>
+                        <img onclick="arrowLeft(${i})" id="chevron-left-${i}" class="big-card-chevron-left"src="./icons/chevron-left-solid.svg" alt="">
+                    </div>
+                    <div>
+                        <img onclick="arrowRight(${i})" id="chevron-right-${i}" class="big-card-chevron-right"src="./icons/chevron-right-solid.svg" alt="">
+                    </div>
+                </div>   
             </section>
             <section class="info-section" id="info-section">
                 <nav class="info-section-nav" id="info-section-nav">
@@ -90,32 +90,44 @@ function renderBigPokemonCardHTML(i) {
                     <h2 onclick="selectInfoSection('stats')" id="stats-h2" class="info-section-h2 border-bottom">Stats</h2>
                     <h2 onclick="selectInfoSection('moves')" id="moves-h2" class="info-section-h2 border-bottom">Moves</h2>
                 </nav>
-                <div class= info-section-main>
-                    <div class="about" id="about">
-                        <table class="table-about">
-                            <tr>
-                                <th>Height:</th>
-                                <td class="about-numbers" id="heigth">${pokemonJSON['about'][i - 1][2]} cm</td>
-                            </tr>
-                            <tr>
-                                <th>Weight:</th>
-                                <td class="about-numbers" id="Weight">${pokemonJSON['about'][i - 1][3]} kg</td>
-                            </tr>
-                            <tr>
-                                <th>Abilities:</th>
-                                <td>
-                                    <div id="ability-zero">${pokemonJSON['about'][i - 1][0]}</div>
-                                    <div id="ability-one">${pokemonJSON['about'][i - 1][1]}</div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="stats d-none" id="stats">
-                    </div>
-                    <div class="moves d-none" id="moves">
-                        <ul id="powerful-moves">
-                            ${renderMovesHTML(i)}
-                        </ul>
+                
+                <div class="outer-info-section-main" id="outer-info-section-main">
+                    <div class="info-section-main" id="info-section-main">
+                        <div class="about" id="about">
+                            <table class="table-about">
+                                <tr>
+                                    <th>Height:</th>
+                                    <td class="about-numbers" id="heigth">${pokemonJSON['about'][i - 1][2]} cm</td>
+                                </tr>
+                                <tr>
+                                    <th>Weight:</th>
+                                    <td class="about-numbers" id="Weight">${pokemonJSON['about'][i - 1][3]} kg</td>
+                                </tr>
+                                <tr>
+                                    <th>Abilities:</th>
+                                    <td>
+                                        <div id="ability-zero">${pokemonJSON['about'][i - 1][0]}</div>
+                                        <div id="ability-one">${pokemonJSON['about'][i - 1][1]}</div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="stats d-none" id="stats">
+                        </div>
+                        <div class="moves d-none" id="moves">
+                            <div>
+                                <h2>Powerful Moves</h2>
+                                <ol id="powerful-moves" class="powerful-moves">
+                                    ${renderMovesHTML(i)}
+                                </ol>
+                            </div>
+                            <div>
+                                <h2>Other Moves</h2>
+                                <ol id="other-moves">
+                                    ${renderOtherMovesHTML(i)}
+                                </ol>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

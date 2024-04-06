@@ -8,7 +8,8 @@ let pokemonJSON =
     'img': [],
     'about': [],
     'stats': [],
-    'moves': []
+    'moves': [],
+    'other moves': []
 }
 
 

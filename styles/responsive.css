@@ -144,6 +144,10 @@
     .big-id-number {
         padding-top: 40px;
     }   
+
+    .moves {
+        padding: 0 48px;
+    }
 }
 
 
@@ -205,6 +209,17 @@
     /* .big-card-h2 {
         padding-bottom: 0;
     } */
+
+    .moves ol, .table-about {
+       /* height: 100%; */
+        line-height: 24px;
+        font-size: 18px;
+  
+    }
+
+    .moves h2 {
+        font-size: 24px;
+    }
 }
 
 @media only screen and (min-width: 768px) {  
