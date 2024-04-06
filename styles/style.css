@@ -229,7 +229,9 @@
   --small-text: 14px;
   --very-small-text: 12px;
   --letter-spacing: 1px;
-  --transition: all 425ms ease;
+  --transition-1: all 225ms ease;
+  --transition-2: all 425ms ease;
+  --transition-3: all 625ms ease;
   --max-width: 1120px;
   --fixed-width: 600px;
 
@@ -364,7 +366,7 @@ body {
   min-height: 60vh;
   width:100%;
   /* background-color: var(--red-1); */
-  border: 1px solid #fff;
+  border: 1px solid var(--zinc-433);
   border-radius: var(--border-radius);
   /* padding: 24px; */
   color: white;
@@ -379,14 +381,27 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  
+  padding-bottom: 16px;
 }
 
-.x-mark-big-card {
+.x-mark-big-card-container {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   padding: 16px 16px 0 0;
+  
+}
+
+.x-mark-big-card {
+  transition: var(--transition-1);
+}
+
+.x-mark-big-card:hover {
+  transform: scale(1.2);
+}
+
+.x-mark-big-card:active {
+  transform: scale(1.3);
 }
 
 /* .pokemon-image-container {
@@ -407,6 +422,63 @@ body {
   justify-content: center; */
   height: 400px;
   width: 100%;
+  color: var(--zinc-767);
+}
+
+.info-section-nav {
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.info-section-h2 {
+  width: 33.33%;
+  text-align: center;
+  cursor: pointer;
+  padding: 16px;
+  margin: 0;
+  color: var(--zinc-333);
+}
+
+.info-section-h2:hover {
+color: var(--zinc-767);
+}
+
+.border-side-and-top {
+  border: 1px solid var(--zinc-433);
+  
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border-bottom: none;
+  color: var(--zinc-767);
+}
+
+.border-bottom {
+  border-bottom: 1px solid var(--zinc-433);
+  color: var(--zinc-333);
+}
+
+.info-section-main {
+  border-bottom: 1px solid var(--zinc-433);
+  border-left: 1px solid var(--zinc-433);
+  border-right: 1px solid var(--zinc-433);
+  height: calc(400px - (32px + 28.17px));
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.about-numbers {
+  text-transform: lowercase;
+}
+
+.table-about, .moves {
+  padding: 48px;
+}
+
+.table-about th {
+  width: 160px;
+  text-align: start;
+  line-height: 64px;
 }
 
 .big-card-main {
@@ -428,7 +500,7 @@ body {
   width: 150px;
   /* position: relative;
   bottom: 16px; */
-  transition: var(--transition);
+  transition: var(--transition-3);
 }
 
 .big-pokemon-image:hover {
@@ -444,7 +516,44 @@ body {
   font-size: 40px;
   margin: 0;
   padding-bottom: 32px;
+  text-align: center;
+  padding: 16px;
 }
+
+.big-card-chevrons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.big-card-chevron-left {
+  /* border: 3px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px; */
+  padding: 0 20px;
+  cursor: pointer;
+  transition: var(--transition-1);
+}
+
+.big-card-chevron-right {
+  /* border: 3px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px; */
+  padding: 0 20px;
+  cursor: pointer;
+  transition: var(--transition-1);
+}
+
+.big-card-chevron-left:hover, .big-card-chevron-right:hover {
+  transform: scale(1.2);
+}
+
+.big-card-chevron-left:active, .big-card-chevron-right:active {
+  transform: scale(1.3);
+}
+
 
 .big-id-number {
   /* position: absolute;
@@ -483,7 +592,7 @@ body {
   border-radius: var(--border-radius);
   color: white;
   padding: 18px;
-  transition: var(--transition);
+  transition: var(--transition-2);
   box-shadow: var(--shadow-6);
   position: relative;
 }
@@ -498,7 +607,7 @@ body {
   width: 150px;
   /* position: relative;
   bottom: 16px; */
-  transition: var(--transition);
+  transition: var(--transition-3);
 }
 
 .small-pokemon-image:hover {
@@ -613,9 +722,9 @@ a, button {
   cursor: pointer;
 }
 
-ul li {
+/* ul li {
     list-style-type: none;
-}
+} */
 
 .img {
   width: 100%;
@@ -709,7 +818,7 @@ nav {
 /* Hidden Element */
 
 .hide-element {
-  transition: var(--transition);
+  transition: var(--transition-1);
   transform: translateX(101%);
 }
 
@@ -1133,6 +1242,15 @@ nav {
   box-shadow: 8px 8px 6px 3px #00000044;
   cursor: pointer;
   z-index: 2;
+  transition: var(--transition-1);
+}
+
+.chevron-up:hover {
+  transform: scale(1.06);
+}
+
+.chevron-up:active {
+  transform: scale(1.1);
 }
 
 .chevron-down {
@@ -1149,6 +1267,17 @@ nav {
   box-shadow: 8px 8px 6px 3px #00000044;
   cursor: pointer;
   z-index: 2;
+  transition: var(--transition-1);
+}
+
+.chevron-down:hover {
+  transform: scale(1.06);
+  box-shadow: 8px 10px 8px 3px #00000044;
+}
+
+.chevron-down:active {
+  transform: scale(1.1);
+  box-shadow: 8px 12px 12px 3px #00000044;
 }
 
 

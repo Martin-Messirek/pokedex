@@ -178,6 +178,7 @@ function renderSmallCardsSameType(i, pokemon) {
     document.getElementById('type-card-container').innerHTML += renderSmallCardsSameTypeHTML(i, pokemon);
     showColorTypeOneSameType(i, pokemon);
 }
+
 function showColorTypeOneSameType(i, pokemon) {
     let foundFirstType = false; // Initialisierung der Flag-Variable
     for (let j = 0; j < types.length; j++) {

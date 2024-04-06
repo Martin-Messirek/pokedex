@@ -81,29 +81,43 @@ function loadBigPokemonCard(i, pokemon) {
 
 
     // console.log(currentPokemon);
-    renderBigPokemonCard(i, pokemon);
+    renderBigPokemonCard(i);
 }
 
-function renderBigPokemonCard(i, pokemon) {
+function renderBigPokemonCard(i) {
     console.log(i)
-    document.getElementById('big-pokemon-card-container').innerHTML = renderBigPokemonCardHTML(i, pokemon);
-    bigShowColorTypeOne(i, pokemon)
+    document.getElementById('big-pokemon-card-container').innerHTML = renderBigPokemonCardHTML(i);
+    if (i === 1) {
+        let element = document.getElementById(`chevron-left-${i}`);
+        if (element) {
+            element.classList.add('d-none');
+        } else {
+            // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
+            setTimeout(() => {
+                let retryElement = document.getElementById(`chevron-left-${i}`);
+                if (retryElement) {
+                    retryElement.classList.add('d-none');
+                }
+            }, 500); // Warte für 1 Sekunde und überprüfe erneut
+        }
+    }
+    bigShowColorTypeOne(i)
 }
 
-function bigShowColorTypeOne(i, pokemon) {
+function bigShowColorTypeOne(i) {
     let foundFirstType = false; // Initialisierung der Flag-Variable
     for (let j = 0; j < types.length; j++) {
         let typeName = types[j];
         // let color = colors[j];
         // let colorLight = colorsLight[j];
-        console.log(pokemonJSON['types'][i])
+        // console.log(pokemonJSON['types'][i])
 
         // if (pokemonJSON['types'] && pokemonJSON['types'].length > 0 && pokemonJSON['types']['0']['type'] && pokemonJSON['types']['0']['type']['name']) {
 
         if (pokemonJSON['types'][i]['0']['type']['name'] == typeName) {
             let color = colors[j];
             let colorLight = colorsLight[j];
-            console.log('Type One Big')
+            // console.log('Type One Big')
             document.getElementById(`big-pokemon-card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, black, ${color})`;
             document.getElementById(`big-card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
             foundFirstType = true; // Setze die Flag auf true, da der erste Typ gefunden wurde
@@ -113,11 +127,12 @@ function bigShowColorTypeOne(i, pokemon) {
 
 
     }
-    bigShowColorTypeTwo(i, pokemon);
+    bigShowColorTypeTwo(i);
+    renderMovesHTML(i)
 
 }
 
-function bigShowColorTypeTwo(i, pokemon) {
+function bigShowColorTypeTwo(i) {
     if (pokemonJSON['types'][i].length > 1) {
         for (let j = 0; j < types.length; j++) {
             let typeName = types[j];
@@ -140,7 +155,59 @@ function bigShowColorTypeTwo(i, pokemon) {
 
 
 
+function renderMovesHTML(i) {
 
+    let movesHTML = '';
+    const moves = pokemonJSON['moves'][i - 1];
+
+    if (moves.length > 0) {
+        for (let j = 0; j < moves.length; j++) {
+            movesHTML += '<li>' + moves[j] + '</li>';
+        }
+    }
+
+    return movesHTML;
+}
+
+function arrowLeft(i) {
+    console.log('left ' + i)
+    if (i > 1) {
+        i--;
+        // if (i === 1) {
+        //     console.log(i + ' === 1')
+        // let element = document.getElementById(`chevron-left-${i}`);
+        // if (element) {
+        //     element.classList.add('d-none');
+        // } else {
+        //     // Wenn das Element nicht sofort gefunden wird, versuche es erneut nach einer Verzögerung
+        //     setTimeout(() => {
+        //         let retryElement = document.getElementById(`chevron-left-${i}`);
+        //         if (retryElement) {
+        //             retryElement.classList.add('d-none');
+        //         }
+        //     }, 500); // Warte für 1 Sekunde und überprüfe erneut
+        // }
+    }
+
+    console.log('left inside i--' + i)
+    // } else {
+    //     console.log('d-none left ' + i)
+    //     // document.getElementById(`chevron-left-${i}`).classList.add('d-none');
+
+    renderBigPokemonCard(i);
+}
+
+function arrowRight(i) {
+    console.log('right ' + i)
+    if (i < pokemonsLength) {
+        i++;
+        console.log('right inside i++' + i)
+    } else {
+        document.getElementById(`chevron-right-${i}`).classList.add('d-none');
+
+    }
+    renderBigPokemonCard(i);
+}
 
 
 
@@ -194,7 +261,26 @@ function bigShowColorTypeTwo(i, pokemon) {
 // }
 
 
+function selectInfoSection(selected) {
+    console.log(selected)
+    document.getElementById(`${selected}-h2`).classList.add('border-side-and-top');
+    document.getElementById(`${selected}-h2`).classList.remove('border-bottom');
+    document.getElementById(selected).classList.remove('d-none');
+    let options = ['about', 'stats', 'moves']
+    for (let i = 0; i < options.length; i++) {
+        const optionsH2 = `${options[i]}-h2`;
+        const optionsContent = options[i];
+        console.log(optionsH2)
+        if (optionsContent !== selected) {
+            document.getElementById(optionsH2).classList.remove('border-side-and-top');
+            document.getElementById(optionsH2).classList.add('border-bottom');
+            document.getElementById(optionsContent).classList.add('d-none');
+        }
 
+    }
+
+
+}
 
 
 
