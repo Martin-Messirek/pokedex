@@ -117,15 +117,11 @@ function renderBigPokemonCardHTML(i) {
                         <div class="moves d-none" id="moves">
                             <div>
                                 <h2>Powerful Moves</h2>
-                                <ol id="powerful-moves" class="powerful-moves">
-                                    ${renderMovesHTML(i)}
-                                </ol>
+                                <ol id="powerful-moves" class="powerful-moves"></ol>
                             </div>
                             <div>
                                 <h2>Other Moves</h2>
-                                <ol id="other-moves">
-                                    ${renderOtherMovesHTML(i)}
-                                </ol>
+                                <ol id="other-moves"></ol>
                             </div>
                         </div>
                     </div>

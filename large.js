@@ -49,32 +49,60 @@ async function pushStatsToPokemonJSON(pokemon) {
     pokemonJSON.stats.push(array);
 }
 
-let powerfulMoves = {};
-let otherMoves = {};
+// let powerfulMoves = {};
+// let otherMoves = {};
 
-async function pushMovesToPokemonJSON(pokemon) {
-    // Iterieren Sie durch alle pokemon['moves']
-    for (let i = 0; i < pokemon['moves'].length; i++) {
-        // Extrahieren Sie den Move-Namen
-        const move = await pokemon['moves'][i]['move']['name'];
+// async function pushMovesToPokemonJSON(pokemon) {
+//     // Iterieren Sie durch alle pokemon['moves']
+//     for (let i = 0; i < pokemon['moves'].length; i++) {
+//         // Extrahieren Sie den Move-Namen
+//         const move = await pokemon['moves'][i]['move']['name'];
 
-        // Wenn der Move zu den wichtigen und mächtigen Moves gehört
-        if (powerfulAndImportantMoves.includes(move)) {
-            // Überprüfen Sie, ob das Pokémon bereits in powerfulMoves existiert
-            if (!powerfulMoves[i]) {
-                powerfulMoves[i] = []; // Wenn nicht, initialisieren Sie es als leeres Array
-            }
-            powerfulMoves[i].push(move); // Fügen Sie den Move zu powerfulMoves hinzu
-        } else {
-            // Wenn der Move zu den anderen Moves gehört
-            if (!otherMoves[i]) {
-                otherMoves[i] = []; // Überprüfen Sie, ob das Pokémon bereits in otherMoves existiert
-            }
-            otherMoves[i].push(move); // Fügen Sie den Move zu otherMoves hinzu
-        }
-    }
-}
+//         // Wenn der Move zu den wichtigen und mächtigen Moves gehört
+//         if (powerfulAndImportantMoves.includes(move)) {
+//             // Überprüfen Sie, ob das Pokémon bereits in powerfulMoves existiert
+//             if (!powerfulMoves[i]) {
+//                 powerfulMoves[i] = []; // Wenn nicht, initialisieren Sie es als leeres Array
+//             }
+//             powerfulMoves[i].push(move); // Fügen Sie den Move zu powerfulMoves hinzu
+//         } else {
+//             // Wenn der Move zu den anderen Moves gehört
+//             if (!otherMoves[i]) {
+//                 otherMoves[i] = []; // Überprüfen Sie, ob das Pokémon bereits in otherMoves existiert
+//             }
+//             otherMoves[i].push(move); // Fügen Sie den Move zu otherMoves hinzu
+//         }
+//     }
+// }
 
+// async function pushMovesToPokemonJSON(pokemon) {
+//     let array = [];
+//     console.log(pokemon)
+//     // Iterieren Sie durch alle pokemon['moves']
+//     for (let i = 0; i < pokemon['moves'].length; i++) {
+//         // Extrahieren Sie den Move-Namen
+//         const move = await pokemon['moves'][i]['move']['name'];
+
+// array.push(move);
+
+// pokemonJSON.moves.push(array);
+
+// // Wenn der Move zu den wichtigen und mächtigen Moves gehört
+// if (powerfulAndImportantMoves.includes(move)) {
+//     // Überprüfen Sie, ob das Pokémon bereits in powerfulMoves existiert
+//     if (!powerfulMoves[i]) {
+//         powerfulMoves[i] = []; // Wenn nicht, initialisieren Sie es als leeres Array
+//     }
+//     powerfulMoves[i].push(move); // Fügen Sie den Move zu powerfulMoves hinzu
+// } else {
+//     // Wenn der Move zu den anderen Moves gehört
+//     if (!otherMoves[i]) {
+//         otherMoves[i] = []; // Überprüfen Sie, ob das Pokémon bereits in otherMoves existiert
+//     }
+//     otherMoves[i].push(move); // Fügen Sie den Move zu otherMoves hinzu
+// }
+//     }
+// }
 
 // async function pushMovesToPokemonJSON(pokemon) {
 //     // console.log(pokemon) // Correct!
@@ -136,6 +164,7 @@ async function pushMovesToPokemonJSON(pokemon) {
 
 
 function loadBigPokemonCard(i) {
+    // console.log(pokemon)
     // if (i === 1) {
     //     console.log('Alert!! i is 1 ------ i === ' + i);
     //     let element = document.getElementById(`chevron-left-${i}`);
@@ -167,8 +196,9 @@ function loadBigPokemonCard(i) {
 function renderBigPokemonCard(i) {
     // console.log(i)
     document.getElementById('big-pokemon-card-container').innerHTML = renderBigPokemonCardHTML(i);
-
-    bigShowColorTypeOne(i)
+    renderMovesHTML(i);
+    renderOtherMovesHTML(i);
+    bigShowColorTypeOne(i);
 }
 
 function bigShowColorTypeOne(i) {
@@ -195,8 +225,8 @@ function bigShowColorTypeOne(i) {
 
     }
     bigShowColorTypeTwo(i);
-    renderMovesHTML(i);
-    renderOtherMovesHTML(i)
+    // renderMovesHTML(i);
+    // renderOtherMovesHTML(i)
     // if (i === 1) {
     //     console.log(i + ' === 1')
     //     let element = document.getElementById(`chevron-left-${i}`);
@@ -267,26 +297,38 @@ function bigShowColorTypeTwo(i) {
 //     return movesHTML;
 // }
 
-function renderMovesHTML(i) {
+async function renderMovesHTML(i) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+
+    let response = await fetch(url);
+
+    let pokemon = await response.json();
+    // console.log(pokemon)
     let movesHTML = '';
-    const moves = powerfulMoves[i]; // Lesen Sie die mächtigen Moves für das Pokémon mit Index i
-    if (moves && moves.length > 0) {
-        for (let j = 0; j < moves.length; j++) {
-            movesHTML += '<li>' + moves[j] + '</li>';
+    for (let j = 0; j < pokemon['moves'].length; j++) {
+        const move = await pokemon['moves'][j]['move']['name'];
+        console.log(move);
+        if (powerfulAndImportantMoves.includes(move)) {
+            movesHTML += '<li>' + move + '</li>';
+            document.getElementById('powerful-moves').innerHTML = movesHTML;
         }
     }
-    return movesHTML;
 }
 
-function renderOtherMovesHTML(i) {
+async function renderOtherMovesHTML(i) {
+    let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+
+    let response = await fetch(url);
+
+    let pokemon = await response.json();
     let movesHTML = '';
-    const otherMovesList = otherMoves[i]; // Lesen Sie die anderen Moves für das Pokémon mit Index i
-    if (otherMovesList && otherMovesList.length > 0) {
-        for (let j = 0; j < otherMovesList.length; j++) {
-            movesHTML += '<li>' + otherMovesList[j] + '</li>';
+    for (let j = 0; j < pokemon['moves'].length; j++) {
+        const move = await pokemon['moves'][j]['move']['name'];
+        if (!-powerfulAndImportantMoves.includes(move)) {
+            movesHTML += '<li>' + move + '</li>';
+            document.getElementById('other-moves').innerHTML = movesHTML;
         }
     }
-    return movesHTML;
 }
 
 

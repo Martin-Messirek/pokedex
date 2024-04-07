@@ -62,7 +62,7 @@ async function pushToPokemonJSON(pokemon) {
     pokemonJSON.id.push(addId);
     await pushAboutToPokemonJSON(pokemon);
     await pushStatsToPokemonJSON(pokemon);
-    await pushMovesToPokemonJSON(pokemon);
+    // await pushMovesToPokemonJSON(pokemon);
 }
 
 // Load Small Cards - Display Pokemon by Type
