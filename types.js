@@ -1,4 +1,5 @@
 // Load the Pokemon JSON in Batches and them push into an Array
+
 let allPokemonsLoaded = false;
 let pokemonJSON =
 {
@@ -7,12 +8,8 @@ let pokemonJSON =
     'id': [],
     'img': [],
     'about': [],
-    'stats': [],
-    'moves': [],
-    'other moves': []
+    'stats': []
 }
-
-
 
 async function loadAll() {
     try {
@@ -42,8 +39,7 @@ async function loadBatch(startIndex, batchSize) {
 
         const responses = await Promise.all(promises);
 
-        for (const pokemon of responses) { // Iterieren Sie über die Pokemon-Daten, nicht über die Response-Objekte
-            // console.log(pokemon)
+        for (const pokemon of responses) { // Über die Pokemon-Daten iterieren, nicht über die Response-Objekte
             pushToPokemonJSON(pokemon);
         }
     } catch (error) {
@@ -60,12 +56,9 @@ async function pushToPokemonJSON(pokemon) {
     pokemonJSON.img.push(addImg);
     pokemonJSON.types.push(addTypes);
     pokemonJSON.id.push(addId);
-    await pushAboutToPokemonJSON(pokemon);
+    await loadAbout(pokemon);
     await pushStatsToPokemonJSON(pokemon);
-    // await pushMovesToPokemonJSON(pokemon);
 }
-
-// Load Small Cards - Display Pokemon by Type
 
 // Render Pokemon-Type Buttons
 
@@ -76,49 +69,32 @@ function renderButtons() {
     }
 }
 
+// Load Small Cards - Display Pokemon by Type
+
 function loadType(clickedType) {
     showLoadingScreen();
     if (!allPokemonsLoaded) {
         // Wenn die Pokemons noch nicht vollständig geladen sind, warte auf deren Abschluss
         setTimeout(() => {
-            loadType(clickedType); // Wiederholen Sie den Aufruf, wenn die Pokemons noch nicht geladen sind
-        }, 600); // Warten Sie für 1 Sekunde und überprüfen erneut
+            loadType(clickedType); // den Aufruf wiederholen, wenn die Pokemons noch nicht geladen sind
+        }, 600);
         return;
     }
     hideLoadingScreen();
-    currentIndex = 1;  // it is set to 51 onload
+    currentIndex = 1;
     document.getElementById('card-container').innerHTML = '';
     document.getElementById('type-card-container').innerHTML = '';
     loadMoreTypePokemons(clickedType);
 }
 
-// function loadMoreTypePokemons(clickedType) {
-// console.log('clicked' + clickedType);
-// moreTypeBtn.setAttribute('disabled', 'false');
-// moreTypeBtn.style.cursor = 'pointer';
-// moreTypeBtn.style.pointerEvents = 'auto';
-// moreTypeBtn.style.display = 'inline';
-
-// for (let i = 1; i < pokemonsLength; i++) {
-
-// for (let i = currentTypeIndex; i < currentTypeIndex + 50 && i < pokemonsLength; i++) {
-
-// let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-// let response = await fetch(url);
-
-// if (!response.ok) {
-//     console.error('Fehler beim Laden von Daten für Pokemon:', url);
-//     return;
-// }
-// let pokemon = await response.json();
 function loadMoreTypePokemons(clickedType) {
     for (let i = 1; i < pokemonsLength; i++) {
-        // Überprüfen Sie, ob das aktuelle Pokémon den angeklickten Typ hat
-        if (pokemonJSON['types'][i]) {
-            let typeNullSearched = pokemonJSON['types'][i]['0']['type']['name'];
+        // Überprüfen, ob das aktuelle Pokémon den angeklickten Typ hat
+        if (pokemonJSON['types'][i - 1]) {
+            let typeNullSearched = pokemonJSON['types'][i - 1]['0']['type']['name'];
             let typeOneSearched = '';
-            if (pokemonJSON['types'][i].length > 1) {
-                typeOneSearched = pokemonJSON['types'][i]['1']['type']['name'];
+            if (pokemonJSON['types'][i - 1].length > 1) {
+                typeOneSearched = pokemonJSON['types'][i - 1]['1']['type']['name'];
             }
             if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
                 renderSmallCardsSameType(i);
@@ -126,55 +102,6 @@ function loadMoreTypePokemons(clickedType) {
         }
     }
 }
-
-
-
-
-
-
-// console.log(pokemon['types'])
-// if (!pokemon['types']) continue; // Skip if types are not defined
-// let typeNullSearched = pokemonJSON['types'][i]['0']['type']['name'];
-// let typeOneSearched = '';
-// if (pokemonJSON['types'][i].length > 1) {
-//     typeOneSearched = pokemonJSON['types'][i]['1']['type']['name'];
-// }
-// if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
-//     renderSmallCardsSameType(i);
-// count++;
-// if (count === 50) {
-//     break;
-// }
-// }
-// currentTypeIndex++;
-// }
-
-// currentTypeIndex++;
-
-// let typeCount = 0;
-// for (let i = currentTypeIndex; i < pokemonsLength; i++) {
-//     const pokemon = pokemons[currentTypeIndex];
-//     let typeNullSearched = pokemon['types']['0']['type']['name'];
-//     // console.log('Pokemon: ' + pokemon['name']);
-//     let typeOneSearched = '';
-//     if (pokemon['types'].length > 1) {
-//         typeOneSearched = pokemon['types']['1']['type']['name'];
-//     }
-//     if (typeNullSearched === clickedType || typeOneSearched === clickedType) {
-//         typeCount++;
-//     }
-//     // console.log('Type Count: ' + typeCount);
-//     if (typeCount == 0) {
-//         moreTypeBtn.setAttribute('disabled', 'true');
-//         moreTypeBtn.style.cursor = 'default';
-//         moreTypeBtn.style.pointerEvents = 'none'; // removes :hover and :active
-//         moreTypeBtn.style.display = 'none';
-//     }
-//     showMoreTypeButton(clickedType);
-// }
-
-
-
 
 function renderSmallCardsSameType(i, pokemon) {
     document.getElementById('type-card-container').innerHTML += renderSmallCardsSameTypeHTML(i, pokemon);
@@ -188,7 +115,7 @@ function showColorTypeOneSameType(i, pokemon) {
         let color = colors[j];
         let colorLight = colorsLight[j];
 
-        if (pokemonJSON['types'][i]['0']['type']['name'] == typeName) {
+        if (pokemonJSON['types'][i - 1]['0']['type']['name'] == typeName) {
             document.getElementById(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, black, ${color})`;
             document.getElementById(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
             foundFirstType = true; // Setze die Flag auf true, da der erste Typ gefunden wurde
@@ -199,47 +126,18 @@ function showColorTypeOneSameType(i, pokemon) {
 }
 
 function showColorTypeTwoSameType(i, pokemon) {
-    // Überprüfen Sie, ob das Pokémon zwei Typen hat, bevor Sie auf den zweiten Typ zugreifen
-    if (pokemonJSON['types'][i].length > 1) {
+    if (pokemonJSON['types'][i - 1].length > 1) {
         for (let j = 0; j < types.length; j++) {
             let typeName = types[j];
             let colorLight = colorsLight[j];
 
-            // Wenn der zweite Typ vorhanden ist, setzen Sie die Hintergrundfarbe des entsprechenden Elements
-            if (pokemonJSON['types'][i]['1']['type']['name'] == typeName) {
+            if (pokemonJSON['types'][i - 1]['1']['type']['name'] == typeName) {
                 document.getElementById(`card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
-                document.getElementById(`card-type-2-${i}`).innerHTML = `${pokemonJSON['types'][i]['1']['type']['name']}`;
-                return; // Beenden Sie die Schleife, nachdem der zweite Typ gefunden wurde
+                document.getElementById(`card-type-2-${i}`).innerHTML = `${pokemonJSON['types'][i - 1]['1']['type']['name']}`;
+                return; // Die Schleife beenden, nachdem der zweite Typ gefunden wurde
             }
         }
     }
-    // Wenn das Pokémon keinen zweiten Typ hat, setzen Sie einfach das Element auf leer
+    // Wenn das Pokémon keinen zweiten Typ hat, das Element auf leer setzen
     document.getElementById(`card-type-2-${i}`).innerHTML = '';
 }
-// function showColorTypeTwoSameType(i, pokemon) {
-//     let foundSecondType = false;
-//     for (let j = 0; j < types.length; j++) {
-//         let typeName = types[j];
-//         let colorLight = colorsLight[j];
-
-//         if (pokemonJSON['types'][i].length > 1 > 1 && pokemonJSON['types'][i]['1']['type']['name'] == typeName) {
-
-//             document.getElementById(`card-type-2-${i}`).style.backgroundColor = `${colorLight}`;
-//             document.getElementById(`card-type-2-${i}`).innerHTML = `${pokemonJSON['types'][i]['1']['type']['name']}`;
-//             foundSecondType = true;
-//             break;
-//         }
-//     }
-// }
-// function showMoreTypeButton(clickedType) {
-//     let index = types.indexOf(clickedType);
-//     document.getElementById('more-type-btn-text').innerHTML = `Load ${clickedType}
-//                             Pokémons`;
-//     moreTypeBtn.style.backgroundColor = `${colorsLight[index]}`;
-//     moreTypeBtn.onmouseover = function () {
-//         this.style.backgroundColor = `${colors[index]}`;
-//     }
-//     moreTypeBtn.onmouseout = function () {
-//         this.style.backgroundColor = `${colorsLight[index]}`;
-//     }
-// }

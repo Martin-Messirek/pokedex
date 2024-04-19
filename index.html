@@ -7,30 +7,19 @@
     <title>Pokedex</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="icon" type="image/x-icon" href="./img/pokemon-1536849_1920.png">
+
+    <link rel="stylesheet" type='text/css' media='screen' href="./styles/root.css">
     <link rel="stylesheet" type='text/css' media='screen' href="./styles/style.css">
     <link rel="stylesheet" type='text/css' media='screen' href="./styles/responsive.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Saira:ital,wght@0,100..900;1,100..900&family=Sono:wght@200..800&family=Teko:wght@300..700&display=swap"
-        rel="stylesheet">
 </head>
 
-<!-- <body onload="loadBatch(), includeHTML()"> -->
-
 <body id="body" onload="init()">
-
     <div>
 
-
         <!-- Buttons and Search -->
+
         <main class="main">
             <img class="pokemon-logo" src="./img/pokeball-1594373_1280.png" alt="">
-            <!-- <img class="pokemon-img" src="./img/pokemon-1536849_1920.png" alt="">
-            <img class="pokemon-img" src="./img/pokemon-1673770_1920.png" alt="">
-            <img class="pokemon-img" src="./img/pokemon.png" alt=""> -->
-
             <div id="loading-screen" class="loading-screen d-none">
                 <div class="loading-screen-container">
                     <img src="./img/pokemon-1536849_1920.png" id="loading-screen-img" class="loading-screen-img" alt="">
@@ -45,7 +34,6 @@
             <section class="search-section">
                 <div class="form">
                     <div class="form-container">
-                        <!-- <label for="name" class="form-label">Search for a Pokémon</label> -->
                         <div class="suggestions-container">
                             <div id="suggestions" class="suggestions"></div>
                             <div onclick="clearSuggestions()" id="x-mark-suggestions"
@@ -53,7 +41,7 @@
                             </div>
                         </div>
                         <input type="text" placeholder="Search for a Pokémon" id="name" class="form-input" />
-                        <button type="submit" class="btn search-btn">Search</button>
+                        <button type="submit" onclick="displayPokemon()" class="btn search-btn">Search</button>
                     </div>
                 </div>
                 <div class="type-btn-container" id="type-btn-container">
@@ -75,6 +63,7 @@
             <section class="small-card-section">
 
                 <!--  Small Cards  -->
+
                 <div class="card-container" id="card-container"></div>
                 <div class="card-container" id="type-card-container"></div>
                 <div class="btn-container">
@@ -92,17 +81,9 @@
                 </div>
             </section>
 
-
-
-
-
-
-
             <!--  Large Display  -->
+
             <div id="big-pokemon-card-container" class="big-pokemon-card-container d-none"></div>
-
-
-
 
             <footer>
                 <div class="footer">
@@ -119,6 +100,8 @@
     <script src="types.js"></script>
     <script src="large.js"></script>
     <script src="html.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.js"></script>
 </body>
 
 </html>

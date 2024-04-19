@@ -3,7 +3,6 @@ function renderButtonsHTML(type) {
     <button onclick="loadType('${type}')" class="type-btn btn ${type}">${type}</button>`;
 }
 
-
 function renderSmallCardsHTML(i, pokemon) {
     return /*html*/ `
     <div onclick="loadBigPokemonCard('${i}', '${pokemon}')" class="card" id="card${i}">
@@ -26,7 +25,6 @@ function renderSmallCardsHTML(i, pokemon) {
     </div>
     `;
 }
-
 
 function renderSmallCardsSameTypeHTML(i, pokemon) {
     return /*html*/ `
@@ -86,7 +84,7 @@ function renderBigPokemonCardHTML(i) {
             </section>
             <section class="info-section" id="info-section">
                 <nav class="info-section-nav" id="info-section-nav">
-                    <h2 onclick="selectInfoSection('about')" id="about-h2" class="info-section-h2 border-side-and-top">About</h2>
+                    <h2 onclick="selectInfoSection('about')" id="about-h2" class="info-section-h2 border-side-and-top about-h2">About</h2>
                     <h2 onclick="selectInfoSection('stats')" id="stats-h2" class="info-section-h2 border-bottom">Stats</h2>
                     <h2 onclick="selectInfoSection('moves')" id="moves-h2" class="info-section-h2 border-bottom">Moves</h2>
                 </nav>
@@ -113,6 +111,9 @@ function renderBigPokemonCardHTML(i) {
                             </table>
                         </div>
                         <div class="stats d-none" id="stats">
+                            <div>
+                                <canvas id="myChart"></canvas>
+                            </div>
                         </div>
                         <div class="moves d-none" id="moves">
                             <div>
@@ -131,4 +132,3 @@ function renderBigPokemonCardHTML(i) {
     </div>
     `;
 }
-

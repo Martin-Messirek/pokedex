@@ -4,7 +4,6 @@ const colors = ['var(--water-2)', 'var(--grass-2)', 'var(--fire-2)', 'var(--bug-
 
 const colorsLight = ['var(--water-3)', 'var(--grass-3)', 'var(--fire-3)', 'var(--bug-3)', 'var(--normal-3)', 'var(--poison-3)', 'var(--electric-3)', 'var(--ground-3)', 'var(--fairy-3)', 'var(--fighting-3)', 'var(--rock-3)', 'var(--psychic-3)', 'var(--ice-3)', 'var(--dragon-3)', 'var(--flying-3)', 'var(--ghost-3)', 'var(--dark-3)', 'var(--steel-3)'];
 
-// let pokemons = [];
 let currentIndex = 1;
 let currentTypeIndex = 1;
 let count = 0;
@@ -17,17 +16,6 @@ const xMark = document.getElementById('x-mark-suggestions');
 const cardBtn = document.getElementById('card-btn');
 const moreTypeBtn = document.getElementById('more-type-btn');
 
-// function ready() {
-//     loadSmallCardsBatch();
-//     loadAll();
-// }
-// if (document.readyState == "loading") {
-//     document.addEventListener("DOMContentLoaded", ready);
-// } else {
-//     ready();
-// }
-
-
 // Load Initial Page - Display Small Pokemon Cards 
 
 async function init() {
@@ -35,28 +23,29 @@ async function init() {
     renderButtons();
     await loadSmallCardsBatch();
     loadAll();
-    hideLoadingScreen();
+    // hideLoadingScreen();
 }
 
 async function loadSmallCardsBatch() {
-    // console.log(currentIndex)
+    cardBtn.setAttribute('disabled', true);
     document.getElementById('type-card-container').innerHTML = '';
     for (let i = currentIndex; i < currentIndex + 25 && i <= pokemonsLength; i++) {
         await loadSmallCards(i);
+        hideLoadingScreen();
     }
     currentIndex += 25;
-
     if (currentIndex >= pokemonsLength) {
         cardBtn.setAttribute('disabled', true);
         cardBtn.style.cursor = 'default';
         cardBtn.style.pointerEvents = 'none';
         cardBtn.style.display = 'none';
+    } else {
+        cardBtn.disabled = false;
     }
 }
 
 async function loadSmallCards(i) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-    // console.log(url)
     let response = await fetch(url);
 
     if (!response.ok) {
@@ -83,12 +72,11 @@ function showColorTypeOne(i, pokemon) {
         if (pokemon['types']['0']['type']['name'] == typeName) {
             document.getElementById(`card${i}`).style.background = `radial-gradient(ellipse at ${offsetX} bottom, ${color}, ${colorLight}, black, ${color})`;
             document.getElementById(`card-type-1-${i}`).style.backgroundColor = `${colorLight}`;
-            foundFirstType = true; // Setze die Flag auf true, da der erste Typ gefunden wurde
+            foundFirstType = true;
             break;
         }
     }
     showColorTypeTwo(i, pokemon);
-
 }
 
 function showColorTypeTwo(i, pokemon) {
@@ -107,15 +95,12 @@ function showColorTypeTwo(i, pokemon) {
     }
 }
 
-
 // Loading Screen
 
 function showLoadingScreen() {
     document.getElementById('loading-screen').classList.add('background-color');
-    // scrollUp();
     document.getElementById('body').classList.add('no-scroll');
     document.getElementById('loading-screen').classList.remove('d-none');
-
 }
 
 function scrollUp() {
@@ -193,4 +178,18 @@ function clearSuggestions() {
 
 function capitalize(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function displayPokemon() {
+    let inputField = document.getElementById('name');
+    let pokemonName = inputField.value;
+    pokemonName = pokemonName.toLowerCase();
+    for (let i = 0; i < pokemonsLength; i++) {
+        if (pokemonJSON['name'][i] === pokemonName) {
+            inputField.value = '';
+            clearSuggestions();
+            loadBigPokemonCard(i + 1);
+            break;
+        }
+    }
 }
