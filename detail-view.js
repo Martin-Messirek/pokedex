@@ -172,16 +172,16 @@ function notSelectedH2(selected, optionsH2, optionsContent) {
     document.getElementById(optionsH2).classList.remove('border-side-and-top');
     document.getElementById(optionsH2).classList.add('border-bottom');
     document.getElementById(optionsContent).classList.add('d-none');
-    document.getElementById(optionsH2).style.color = 'var(--zinc-333)';
+    document.getElementById(optionsH2).style.color = '#fff';
     const element = document.getElementById(optionsH2);
     element.addEventListener('mouseenter', function () {
         if (optionsContent !== selected) {
-            this.style.color = '#fff';
+            this.style.color = 'var(--zinc-100)';
         }
     });
     element.addEventListener('mouseleave', function () {
         if (optionsContent !== selected) {
-            this.style.color = 'var(--zinc-333)';
+            this.style.color = '#fff';
         }
     });
 }

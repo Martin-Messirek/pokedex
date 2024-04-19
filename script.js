@@ -14,6 +14,7 @@ const suggestionsList = document.getElementById('suggestions');
 const input = document.getElementById('name');
 const xMark = document.getElementById('x-mark-suggestions');
 const cardBtn = document.getElementById('card-btn');
+const cardBtnTwo = document.getElementById('card-btn-2');
 const moreTypeBtn = document.getElementById('more-type-btn');
 
 // Load Initial Page - Display Small Pokemon Cards 
@@ -26,7 +27,9 @@ async function init() {
     // hideLoadingScreen();
 }
 
+
 async function loadSmallCardsBatch() {
+    document.getElementById('card-btn-2').setAttribute('disabled', true);
     cardBtn.setAttribute('disabled', true);
     document.getElementById('type-card-container').innerHTML = '';
     for (let i = currentIndex; i < currentIndex + 25 && i <= pokemonsLength; i++) {
@@ -36,11 +39,14 @@ async function loadSmallCardsBatch() {
     currentIndex += 25;
     if (currentIndex >= pokemonsLength) {
         cardBtn.setAttribute('disabled', true);
+        document.getElementById('card-btn-2').setAttribute('disabled', true);
         cardBtn.style.cursor = 'default';
         cardBtn.style.pointerEvents = 'none';
         cardBtn.style.display = 'none';
     } else {
         cardBtn.disabled = false;
+        document.getElementById('card-btn-2').disabled = false;
+        console.log('cardbtn enabled')
     }
 }
 

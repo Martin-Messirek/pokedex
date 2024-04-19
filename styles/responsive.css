@@ -24,6 +24,10 @@
     .big-pokemon-image {
         width: 180px;
     }
+
+    .load-cards-btn {
+        width: 336px;
+}
 }
 
 @media only screen and (min-width: 440px) {
